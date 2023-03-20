@@ -1,5 +1,3 @@
-// In App.js in a new project
-
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {LoginScreen} from '../screens/auth';
@@ -10,10 +8,28 @@ type AuthStackParamList = {
 
 const AuthStack = createNativeStackNavigator<AuthStackParamList>();
 
+// screens array
+const screens = [
+  {
+    name: 'Login',
+    component: LoginScreen,
+    options: {
+      headerShown: false,
+    },
+  },
+] as const;
+
 function AuthNav() {
   return (
     <AuthStack.Navigator>
-      <AuthStack.Screen name="Login" component={LoginScreen} />
+      {screens.map((screen, index) => (
+        <AuthStack.Screen
+          key={index}
+          name={screen.name}
+          component={screen.component}
+          options={screen.options}
+        />
+      ))}
     </AuthStack.Navigator>
   );
 }
