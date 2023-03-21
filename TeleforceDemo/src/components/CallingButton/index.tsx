@@ -30,13 +30,13 @@ export default CallingButton;
 
 const styles = StyleSheet.create({
   container: {
-    width: 90,
-    height: 90,
+    width: 75,
+    height: 75,
     borderRadius: 50,
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    bottom: 50,
+    bottom: 30,
     shadowOffset: {
       width: 0,
       height: 15,

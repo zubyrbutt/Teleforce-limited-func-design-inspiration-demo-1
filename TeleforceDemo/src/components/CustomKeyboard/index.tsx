@@ -1,80 +1,64 @@
-import React from 'react';
+import React, {memo, useCallback} from 'react';
 import {
+  Keyboard,
+  Pressable,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
+import {SvgXml} from 'react-native-svg';
 
+import {ClearIcon} from '../../assets/icons/svg';
 import CallingButton from '../CallingButton';
 
-const DialerButton = ({number, letters, onPress}: any) => {
+const DialerButton = memo(({number, letters, onPress, onLongPress}: any) => {
   return (
-    <TouchableOpacity style={styles.dialerButton} onPress={onPress}>
+    <Pressable
+      style={styles.dialerButton}
+      onPress={onPress}
+      onLongPress={onLongPress}>
       <Text style={styles.dialerButtonText}>{number}</Text>
       <Text style={styles.dialerButtonLetters}>{letters}</Text>
-    </TouchableOpacity>
+    </Pressable>
   );
-};
+});
 
-const DialerIcon = ({icon, onPress}: any) => {
-  return (
-    <TouchableOpacity style={styles.dialerButton} onPress={onPress}>
-      <Text></Text>
-    </TouchableOpacity>
-  );
-};
-
-const DialerRow = ({buttons}: any) => {
+const DialerRow = memo(({buttons}: any) => {
   return (
     <View style={styles.dialerRow}>
-      {buttons.map(({number, letters, icon, onPress}: any) =>
-        icon ? (
-          <DialerIcon key={icon} icon={icon} onPress={onPress} />
-        ) : (
-          <DialerButton
-            key={number}
-            number={number}
-            letters={letters}
-            onPress={onPress}
-          />
-        ),
-      )}
+      {buttons.map(({number, letters, onPress, onLongPress}: any) => (
+        <DialerButton
+          key={number}
+          number={number}
+          letters={letters}
+          onPress={onPress}
+          onLongPress={onLongPress}
+        />
+      ))}
     </View>
   );
-};
-
+});
 interface Props {
   data: any;
-  //   keyExtractor: any;
-  //   renderItem: any;
   value: string;
   setSearch: any;
 }
 
 const CustomKeyboard = (props: Props) => {
+  const {data, value, setSearch} = props;
+
   const handleButtonPress = (value: string) => {
-    // if length is 17 then return
-    if (props.value.length === 17) {
+    if (value.length === 17) {
       return;
     }
-    props.setSearch(props.value + value);
+    setSearch(props.value + value);
   };
 
-  const handleBackspacePress = () => {
-    // setPhoneNumber(phoneNumber.slice(0, -1));
-    props.setSearch(props.value.slice(0, -1));
-  };
-
-  const handleCallPress = () => {
-    console.log(`Calling ${props.value}...`);
-  };
-
-  const handleClearPress = () => {
-    // setPhoneNumber('');
-    props.setSearch('');
-  };
+  const handleBackspacePress = useCallback(() => {
+    setSearch(value.slice(0, -1));
+  }, [setSearch, value]);
 
   const dialerRows = [
     {
@@ -100,60 +84,86 @@ const CustomKeyboard = (props: Props) => {
     },
     {
       buttons: [
-        {icon: 'backspace', onPress: handleBackspacePress},
-        {number: '0', letters: '+', onPress: () => handleButtonPress('0')},
-        {icon: 'phone', onPress: handleCallPress},
+        {number: '*', letters: '', onPress: () => handleButtonPress('*')},
+        {
+          number: '0',
+          letters: '+',
+          onPress: () => handleButtonPress('0'),
+          onLongPress: () => handleButtonPress('+'),
+        },
+        {number: '#', letters: '', onPress: () => handleButtonPress('#')},
       ],
     },
   ];
 
-  console.log('props.value', props.value);
-
   return (
     <View style={styles.container}>
-      <View
-        style={{
-          width: '90%',
-          alignSelf: 'center',
-        }}>
-        <Text
+      <View>
+        {props.data[0]?.givenName ? (
+          <Text
+            numberOfLines={1}
+            style={{
+              fontSize: 30,
+              fontWeight: '500',
+              color: '#000',
+            }}>
+            {props.data[0]?.givenName}
+          </Text>
+        ) : (
+          <Text
+            style={{
+              fontSize: 30,
+              fontWeight: '500',
+              opacity: 0,
+            }}>
+            "No Name"
+          </Text>
+        )}
+
+        <View
           style={{
-            fontSize: 30,
-            fontWeight: '500',
-            color: '#000',
-            marginBottom: 1,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
           }}>
-          {props.data[0]?.givenName}
-        </Text>
-        {/* <Text
-          style={{
-            fontSize: 30,
-            fontWeight: '500',
-            color: '#000',
-            marginBottom: 1,
-          }}>
-          {props.data[0]?.phoneNumbers[0].number}
-        </Text> */}
+          <TextInput
+            style={styles.phoneNumberInput}
+            placeholder=""
+            keyboardType="phone-pad"
+            value={props.value}
+            onFocus={() => {
+              Keyboard.dismiss();
+            }}
+          />
+          {props.value.length > 0 ? (
+            <TouchableOpacity
+              onPress={handleBackspacePress}
+              style={{
+                bottom: 10,
+                width: 40,
+                height: 40,
+                borderRadius: 20,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <SvgXml width={30} height={30} xml={ClearIcon} />
+            </TouchableOpacity>
+          ) : (
+            <View
+              style={{
+                width: 40,
+                height: 40,
+              }}
+            />
+          )}
+        </View>
       </View>
-      <TextInput
-        style={styles.phoneNumberInput}
-        placeholder="Enter phone number"
-        keyboardType="phone-pad"
-        value={props.value}
-      />
+
       <View style={styles.dialer}>
         {dialerRows.map((row, index) => (
           <DialerRow key={index} buttons={row.buttons} />
         ))}
       </View>
-      <View
-        style={{
-          height: 100,
-        }}
-      />
-      {/* <TouchableOpacity style={styles.clearButton} onPress={handleClearPress}>
-        <Text style={styles.clearButtonText}>Clear</Text>
-      </TouchableOpacity> */}
       <CallingButton color="#3FAE6C" />
     </View>
   );
@@ -173,16 +183,13 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   phoneNumberInput: {
-    width: '90%',
-    // height: 40,
-    // borderWidth: 1,
-    // borderColor: '#ccc',
-    borderRadius: 5,
-    padding: 10,
+    width: '79%',
+    paddingVertical: 10,
     marginBottom: 20,
     fontSize: 30,
     fontWeight: '500',
     color: '#000',
+    // backgroundColor: '#ccc',
   },
   dialer: {
     width: '100%',
@@ -197,7 +204,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    margin: 5,
+    margin: 10,
   },
 
   dialerButton: {
