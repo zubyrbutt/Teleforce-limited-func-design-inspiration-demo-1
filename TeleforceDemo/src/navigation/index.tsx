@@ -6,7 +6,8 @@ import AppNav from './appNav';
 function RootNav() {
   return (
     <NavigationContainer>
-       <AuthNav />
+      {/* <AuthNav /> */}
+      <AppNav />
     </NavigationContainer>
   );
 }
