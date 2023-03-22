@@ -1,11 +1,24 @@
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React, {useEffect} from 'react';
+import {ActivityIndicator, StyleSheet, Text} from 'react-native';
+
+import {useNavigation} from '@react-navigation/native';
+
+import {Wrapper} from '../../../components';
 
 const ConnectingScreen = () => {
+  const navigation = useNavigation<any>();
+
+  useEffect(() => {
+    setTimeout(() => {
+      navigation.navigate('Dialing');
+    }, 3000);
+  }, []);
+
   return (
-    <View>
-      <Text>ConnectingScreen</Text>
-    </View>
+    <Wrapper>
+      <ActivityIndicator size="large" />
+      <Text>Connecting to the server...</Text>
+    </Wrapper>
   );
 };
 

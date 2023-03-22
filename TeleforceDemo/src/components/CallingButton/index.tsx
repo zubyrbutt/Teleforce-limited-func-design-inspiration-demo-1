@@ -7,15 +7,16 @@ import {CallingIcon} from '../../assets/icons/svg';
 interface Props {
   color?: string;
   icon?: string;
+  onPress: () => void;
 }
 
-const CallingButton = ({color, icon}: Props) => {
+const CallingButton = ({color, icon, onPress}: Props) => {
   const BGColor = color ? color : '#E64530';
   // 3FAE6C
 
   return (
     <TouchableOpacity
-      onPress={() => console.log('Calling')}
+      onPress={onPress}
       activeOpacity={0.8}
       style={[
         styles.container,

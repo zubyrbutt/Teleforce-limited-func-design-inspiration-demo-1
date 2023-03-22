@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React, {Fragment, memo} from 'react';
 import {StyleSheet, Text, TextInput, View} from 'react-native';
 import {SvgXml} from 'react-native-svg';
 
@@ -9,6 +9,7 @@ type AuthInputProps = {
   value?: string;
   onChangeText?: (text: string) => void;
   secureTextEntry?: boolean;
+  error?: string;
 };
 
 const AuthInput: React.FC<AuthInputProps> = memo(
@@ -19,34 +20,42 @@ const AuthInput: React.FC<AuthInputProps> = memo(
     value,
     onChangeText,
     secureTextEntry = false,
+    error,
   }) => {
-    const inputType = secureTextEntry ? 'password' : 'default';
-
     return (
-      <View style={styles.container}>
-        <Text style={styles.title}>{label}</Text>
+      <Fragment>
+        <View style={styles.container}>
+          <Text style={styles.title}>{label}</Text>
 
-        <View style={styles.inputWrapper}>
-          <SvgXml width={20} height={20} style={styles.icon} xml={icon} />
-          <TextInput
-            placeholder={placeholder}
-            style={styles.input}
-            value={value}
-            onChangeText={onChangeText}
-            secureTextEntry={secureTextEntry}
-            autoCapitalize="none"
-            autoCorrect={false}
-            keyboardType={inputType === 'default' ? 'default' : 'numeric'}
-          />
+          <View style={styles.inputWrapper}>
+            <SvgXml width={20} height={20} style={styles.icon} xml={icon} />
+            <TextInput
+              placeholder={placeholder}
+              style={styles.input}
+              value={value}
+              onChangeText={onChangeText}
+              secureTextEntry={secureTextEntry}
+              autoCapitalize="none"
+              autoCorrect={false}
+            />
+          </View>
         </View>
-      </View>
+        <View
+          style={{
+            width: '85%',
+            // backgroundColor: 'gray',
+            bottom: 5,
+          }}>
+          <Text style={styles.error}>{error}</Text>
+        </View>
+      </Fragment>
     );
   },
 );
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
+    width: '85%',
     marginVertical: 10,
     borderBottomColor: '#ccc',
     borderBottomWidth: 1,
@@ -69,6 +78,12 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 40,
     paddingHorizontal: 10,
+  },
+  error: {
+    color: 'red',
+    fontSize: 12,
+    fontWeight: '500',
+    textAlign: 'left',
   },
 });
 

@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {Alert, PermissionsAndroid, Platform, StyleSheet} from 'react-native';
+import React, {useLayoutEffect, useState} from 'react';
+import {Alert, BackHandler, PermissionsAndroid, Platform} from 'react-native';
 import Contacts, {Contact} from 'react-native-contacts';
 
 import CustomKeyboard from '../../../components/CustomKeyboard';
@@ -8,8 +8,28 @@ const DialingScreen = () => {
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [search, setSearch] = useState('');
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     requestContactsPermission();
+
+    // back press handler and exit app
+    const backAction = () => {
+      Alert.alert('Hold on!', 'Are you sure you want to exit?', [
+        {
+          text: 'Cancel',
+          onPress: () => null,
+          style: 'cancel',
+        },
+        {text: 'YES', onPress: () => BackHandler.exitApp()},
+      ]);
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction,
+    );
+
+    return () => backHandler.remove();
   }, []);
 
   const requestContactsPermission = async () => {
@@ -75,37 +95,3 @@ const DialingScreen = () => {
 };
 
 export default DialingScreen;
-
-const styles = StyleSheet.create({
-  contactCon: {
-    flex: 1,
-    flexDirection: 'row',
-    padding: 5,
-    borderBottomWidth: 0.5,
-    borderBottomColor: '#d9d9d9',
-  },
-  imgCon: {},
-  placeholder: {
-    width: 55,
-    height: 55,
-    borderRadius: 30,
-    overflow: 'hidden',
-    backgroundColor: '#d9d9d9',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  contactDat: {
-    flex: 1,
-    justifyContent: 'center',
-    paddingLeft: 5,
-  },
-  txt: {
-    fontSize: 18,
-  },
-  name: {
-    fontSize: 16,
-  },
-  phoneNumber: {
-    color: '#888',
-  },
-});

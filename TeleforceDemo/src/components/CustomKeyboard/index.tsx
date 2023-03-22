@@ -10,6 +10,8 @@ import {
 } from 'react-native';
 import {SvgXml} from 'react-native-svg';
 
+import {useNavigation} from '@react-navigation/native';
+
 import {ClearIcon} from '../../assets/icons/svg';
 import CallingButton from '../CallingButton';
 
@@ -48,6 +50,8 @@ interface Props {
 
 const CustomKeyboard = (props: Props) => {
   const {data, value, setSearch} = props;
+
+  const navigation = useNavigation<any>();
 
   const handleButtonPress = (value: string) => {
     if (value.length === 17) {
@@ -95,6 +99,14 @@ const CustomKeyboard = (props: Props) => {
       ],
     },
   ];
+
+  const handleCallPress = () => {
+    // navigate to calling screen with the number
+    navigation.navigate('Calling', {
+      number: props.data[0]?.phoneNumbers[0]?.number,
+      name: props.data[0]?.givenName,
+    });
+  };
 
   return (
     <View style={styles.container}>
@@ -164,7 +176,7 @@ const CustomKeyboard = (props: Props) => {
           <DialerRow key={index} buttons={row.buttons} />
         ))}
       </View>
-      <CallingButton color="#3FAE6C" />
+      <CallingButton onPress={handleCallPress} color="#3FAE6C" />
     </View>
   );
 };

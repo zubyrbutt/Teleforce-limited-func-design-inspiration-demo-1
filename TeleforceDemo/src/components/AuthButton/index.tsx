@@ -4,20 +4,23 @@ import LinearGradient from 'react-native-linear-gradient';
 
 interface AuthButtonProps {
   onPress: () => void;
+  title: string;
+  isDisable: boolean;
 }
 
-const AuthButton = ({onPress}: AuthButtonProps) => {
+const AuthButton = ({onPress, title, isDisable = true}: AuthButtonProps) => {
   return (
     <TouchableOpacity
+        disabled={isDisable}
       activeOpacity={0.8}
       onPress={onPress}
-      style={{width: '100%'}}>
+      style={{width: '85%'}}>
       <LinearGradient
         start={{x: 0, y: 0}}
         end={{x: 1, y: 0}}
         style={styles.container}
         colors={['#65D4DD', '#E340FC']}>
-        <Text style={styles.text}>LOGIN</Text>
+        <Text style={styles.text}>{title}</Text>
       </LinearGradient>
     </TouchableOpacity>
   );
