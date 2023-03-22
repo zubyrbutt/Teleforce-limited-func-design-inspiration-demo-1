@@ -42,7 +42,13 @@ const CallingScreen: React.FC<Props> = ({route}) => {
         <Text style={styles.phone}>{number}</Text>
         {isCalling ? <Timer /> : <CallingLoader />}
       </View>
-      <CallingButton onPress={handleCallingButton} />
+      <View
+        style={{
+          position: 'absolute',
+          bottom: 40,
+        }}>
+        <CallingButton onPress={handleCallingButton} />
+      </View>
     </Wrapper>
   );
 };

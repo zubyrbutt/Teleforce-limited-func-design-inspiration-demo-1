@@ -46,14 +46,14 @@ const styles = StyleSheet.create({
     borderRadius: BUTTON_SIZE / 2,
     justifyContent: 'center',
     alignItems: 'center',
-    position: 'absolute',
-    bottom: 30,
+    // position: 'absolute',
+    // bottom: 30,
     shadowOffset: {
       width: 0,
       height: 15,
     },
-    shadowOpacity: 0.5,
-    shadowRadius: 15,
+    shadowOpacity: 0.4,
+    shadowRadius: 20,
     elevation: 5,
   },
 });

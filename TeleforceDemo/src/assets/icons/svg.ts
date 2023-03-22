@@ -3,5 +3,23 @@ const LockIcon = `<svg width="800" height="800" viewBox="0 0 36 36" xmlns="http:
 const CallingIcon = `<svg width="800" height="800" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><path d="M231.556 175.08A56.07 56.07 0 0 1 176 224C96.598 224 32 159.402 32 80a56.07 56.07 0 0 1 48.92-55.556 16.028 16.028 0 0 1 16.652 9.583l20.092 46.878a15.97 15.97 0 0 1-1.32 15.067L99.709 121.39l-.002.002a76.54 76.54 0 0 0 35.205 35.05l25.043-16.694a15.951 15.951 0 0 1 15.179-1.394l46.838 20.073a16.035 16.035 0 0 1 9.584 16.652ZM157.352 47.728a72.12 72.12 0 0 1 50.92 50.92 8 8 0 0 0 15.456-4.131 88.164 88.164 0 0 0-62.246-62.247 8 8 0 0 0-4.13 15.457Zm-8.285 30.917a40.066 40.066 0 0 1 28.287 28.287 8 8 0 0 0 15.457-4.131 56.106 56.106 0 0 0-39.613-39.614 8 8 0 0 0-4.13 15.457Z"/></svg>`;
 const AvatarIcon = `<svg width="800" height="800" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19.727 20.447c-.455-1.276-1.46-2.403-2.857-3.207C15.473 16.436 13.761 16 12 16c-1.761 0-3.473.436-4.87 1.24-1.397.804-2.402 1.931-2.857 3.207" stroke="#fff" stroke-linecap="round"/><circle cx="12" cy="8" r="4" stroke="#fff" stroke-linecap="round"/></svg>`;
 const ClearIcon = `<svg width="800" height="800" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m7.5 5.5-3.447 5.29a1.641 1.641 0 0 0-.043 1.723L7.5 18.5h11.36a1.64 1.64 0 0 0 1.64-1.641V7.14a1.64 1.64 0 0 0-1.64-1.641H7.5Zm2.5 3 7 7m-7 0 6.93-7" stroke="#787878" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const CurveBar = `<svg width="1070" height="228" viewBox="0 0 1070 228" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_d_403_31)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M657.534 100.749C682.307 72.8015 706.658 45.3294 753 40L1050 40V228H20V40L317 40C377.263 40 401.661 71.5395 426.054 103.072C450.436 134.592 474.814 166.105 535 166.105C599.603 166.105 628.851 133.108 657.534 100.749Z" fill="white"/>
+</g>
+<defs>
+<filter id="filter0_d_403_31" x="0" y="0" width="1070" height="228" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="-20"/>
+<feGaussianBlur stdDeviation="10"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.6 0 0 0 0 0.904 0 0 0 0 1 0 0 0 0.31 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_403_31"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_403_31" result="shape"/>
+</filter>
+</defs>
+</svg>
 
-export {UserIcon, LockIcon, CallingIcon, AvatarIcon, ClearIcon};
+`;
+export {UserIcon, LockIcon, CallingIcon, AvatarIcon, ClearIcon, CurveBar};

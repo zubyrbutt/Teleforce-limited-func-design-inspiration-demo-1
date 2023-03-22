@@ -6,6 +6,7 @@ import {useNavigation} from '@react-navigation/native';
 
 import {ClearIcon} from '../../assets/icons/svg';
 import CallingButton from '../CallingButton';
+import FooterBar from '../CurveBar';
 import DialerRow from './components/DialerRow';
 import {dialerRows} from './dialerData';
 import {styles} from './styles';
@@ -90,7 +91,7 @@ const CustomKeyboard = (props: Props) => {
           <DialerRow key={index} buttons={row.buttons} />
         ))}
       </View>
-      <CallingButton
+      <FooterBar
         isDisabled={isDisable}
         onPress={handleCallPress}
         backgroundColor="#3FAE6C"

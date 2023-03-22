@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: '#fafafa',
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
@@ -22,6 +22,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     borderBottomColor: '#e1e3e1',
     borderBottomWidth: 1,
+    marginBottom: 15,
   },
   clearIcon: {
     bottom: 5,

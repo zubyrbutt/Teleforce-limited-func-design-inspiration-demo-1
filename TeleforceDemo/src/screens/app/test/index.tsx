@@ -1,17 +1,18 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 
-import {Wrapper} from '../../../components';
 import ConnectionLoader from '../../../components/ConnectionLoader';
+import FooterBar from '../../../components/CurveBar';
 
 const TestScreen = () => {
   return (
-    <Wrapper
+    <View
       style={{
-        justifyContent: 'center',
+        flex: 1,
+        // backgroundColor: '#ccc',
       }}>
-       <ConnectionLoader />
-    </Wrapper>
+      <FooterBar />
+    </View>
   );
 };
 
