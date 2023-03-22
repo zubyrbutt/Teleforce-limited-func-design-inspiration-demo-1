@@ -1,12 +1,25 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Text} from 'react-native';
 
-import CustomKeyboard from '../../../components/CustomKeyboard';
+import {Wrapper} from '../../../components';
 
 const TestScreen = () => {
-  return <CustomKeyboard />;
+  return (
+    <Wrapper
+      style={{
+        justifyContent: 'center',
+      }}>
+      <Text>tst</Text>
+    </Wrapper>
+  );
 };
 
 export default TestScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});

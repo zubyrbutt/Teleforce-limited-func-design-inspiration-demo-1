@@ -5,35 +5,45 @@ import {SvgXml} from 'react-native-svg';
 import {CallingIcon} from '../../assets/icons/svg';
 
 interface Props {
-  color?: string;
-  icon?: string;
+  isDisabled?: boolean;
+  backgroundColor?: string;
   onPress: () => void;
 }
 
-const CallingButton = ({color, icon, onPress}: Props) => {
-  const BGColor = color ? color : '#E64530';
-  // 3FAE6C
+const BUTTON_SIZE = 75;
+const ICON_SIZE = 40;
+
+const CallingButton: React.FC<Props> = ({
+  isDisabled = false,
+  backgroundColor = '#E64530',
+  onPress,
+}) => {
+  const containerStyles: any = [
+    styles.container,
+    {backgroundColor: backgroundColor, shadowColor: backgroundColor},
+  ];
 
   return (
     <TouchableOpacity
+      disabled={isDisabled}
       onPress={onPress}
       activeOpacity={0.8}
-      style={[
-        styles.container,
-        {backgroundColor: BGColor, shadowColor: BGColor},
-      ]}>
-      <SvgXml fill={'#fff'} width={40} height={40} xml={CallingIcon} />
+      style={containerStyles}>
+      <SvgXml
+        fill="#fff"
+        width={ICON_SIZE}
+        height={ICON_SIZE}
+        xml={CallingIcon}
+      />
     </TouchableOpacity>
   );
 };
 
-export default CallingButton;
-
 const styles = StyleSheet.create({
   container: {
-    width: 75,
-    height: 75,
-    borderRadius: 50,
+    width: BUTTON_SIZE,
+    height: BUTTON_SIZE,
+    borderRadius: BUTTON_SIZE / 2,
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
@@ -47,3 +57,5 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
 });
+
+export default CallingButton;

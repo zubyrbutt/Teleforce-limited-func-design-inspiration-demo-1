@@ -4,13 +4,15 @@ import {Alert, BackHandler} from 'react-native';
 import CustomKeyboard from '../../../components/CustomKeyboard';
 import {useAppSelector} from '../../../global/hooks';
 
-const DialingScreen = () => {
+const formattedPhoneNumber = (phoneNumber: string) =>
+  phoneNumber.replace(/[^\d]/g, '');
+
+const DialingScreen = React.memo(() => {
   const [search, setSearch] = useState('');
 
   const {contacts} = useAppSelector(state => state.contacts);
 
   useLayoutEffect(() => {
-    // back press handler and exit app
     const backAction = () => {
       Alert.alert('Hold on!', 'Are you sure you want to exit?', [
         {
@@ -31,11 +33,8 @@ const DialingScreen = () => {
     return () => backHandler.remove();
   }, []);
 
-  const formattedPhoneNumber = (phoneNumber: string) =>
-    phoneNumber.replace(/[^\d]/g, '');
-
   const filteredContacts = contacts.filter(contact => {
-    const phoneNumber = contact.phoneNumbers[0]?.number;
+    const phoneNumber = contact.phoneNumbers?.[0]?.number;
     if (phoneNumber) {
       return formattedPhoneNumber(phoneNumber).includes(
         formattedPhoneNumber(search),
@@ -51,6 +50,6 @@ const DialingScreen = () => {
       setSearch={setSearch}
     />
   );
-};
+});
 
 export default DialingScreen;
