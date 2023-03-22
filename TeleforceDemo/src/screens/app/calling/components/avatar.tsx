@@ -16,8 +16,8 @@ export default Avatar;
 
 const styles = StyleSheet.create({
   container: {
-    width: 130,
-    height: 130,
+    width: 110,
+    height: 110,
     borderRadius: 100,
     backgroundColor: '#0283BB',
     justifyContent: 'center',

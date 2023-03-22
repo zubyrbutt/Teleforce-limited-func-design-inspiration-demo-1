@@ -101,43 +101,34 @@ const CustomKeyboard = (props: Props) => {
   ];
 
   const handleCallPress = () => {
-    // navigate to calling screen with the number
-    navigation.navigate('Calling', {
-      number: props.data[0]?.phoneNumbers[0]?.number,
-      name: props.data[0]?.givenName,
-    });
+    const number = data[0]?.phoneNumbers[0]?.number;
+    if (number) {
+      navigation.navigate('Calling', {
+        name: data[0]?.givenName,
+        number: number,
+      });
+    } else {
+      navigation.navigate('Calling', {
+        name: 'Un Known',
+        number: value,
+      });
+    }
   };
 
   return (
     <View style={styles.container}>
       <View>
         {props.data[0]?.givenName ? (
-          <Text
-            numberOfLines={1}
-            style={{
-              fontSize: 30,
-              fontWeight: '500',
-              color: '#000',
-            }}>
-            {props.data[0]?.givenName}
-          </Text>
+          <TouchableOpacity activeOpacity={0.8} onPress={handleCallPress}>
+            <Text numberOfLines={1} style={styles.name}>
+              {props.data[0]?.givenName}
+            </Text>
+          </TouchableOpacity>
         ) : (
-          <Text
-            style={{
-              fontSize: 30,
-              fontWeight: '500',
-              opacity: 0,
-            }}>
-            "No Name"
-          </Text>
+          <Text style={[styles.name, {opacity: 0}]}>"No Name"</Text>
         )}
 
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}>
+        <View style={styles.phoneInputContainer}>
           <TextInput
             style={styles.phoneNumberInput}
             placeholder=""
@@ -150,14 +141,7 @@ const CustomKeyboard = (props: Props) => {
           {props.value.length > 0 ? (
             <TouchableOpacity
               onPress={handleBackspacePress}
-              style={{
-                bottom: 10,
-                width: 40,
-                height: 40,
-                borderRadius: 20,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
+              style={styles.clearIcon}>
               <SvgXml width={30} height={30} xml={ClearIcon} />
             </TouchableOpacity>
           ) : (
@@ -193,6 +177,25 @@ const styles = StyleSheet.create({
     bottom: 0,
     width: '100%',
     height: '100%',
+  },
+
+  name: {
+    fontSize: 30,
+    fontWeight: '500',
+    color: '#000',
+  },
+  phoneInputContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  clearIcon: {
+    bottom: 10,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   phoneNumberInput: {
     width: '79%',

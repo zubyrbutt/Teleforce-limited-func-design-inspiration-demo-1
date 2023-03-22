@@ -1,24 +1,30 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
 
 import {CallingButton, Wrapper} from '../../../components';
 import {Avatar} from './components';
+import CallingLoader from './components/callingLoader';
 import Timer from './components/timer';
 
-const CallingScreen = (props: any) => {
-  const {name, number} = props.route.params;
+interface Props {
+  route: {
+    params: {
+      name: string;
+      number: string;
+    };
+  };
+}
 
-  const [isCalling, setIsCalling] = React.useState(false);
-
+const CallingScreen: React.FC<Props> = ({route}) => {
+  const {name = 'Un Known', number = 'Un Known'} = route.params;
+  const [isCalling, setIsCalling] = useState(false);
   const navigation = useNavigation<any>();
 
   const handleCallingButton = () => {
     navigation.navigate('Dialing');
   };
-
-  // start timer after 5 seconds
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -27,49 +33,25 @@ const CallingScreen = (props: any) => {
     return () => clearTimeout(timer);
   }, []);
 
-  // calling dots animation
-
-  const [dots, setDots] = React.useState('.');
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (dots === '...') {
-        setDots('.');
-      } else {
-        setDots(dots + '.');
-      }
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, [dots]);
-
   return (
     <Wrapper>
       <View style={styles.spacer} />
       <Avatar />
       <View style={styles.detailsContainer}>
-        <Text style={styles.name}>{name || 'Un Known'}</Text>
-        <Text style={styles.phone}>{number || 'Un Known'}</Text>
-
-        {isCalling ? (
-          <Timer />
-        ) : (
-          <Text style={styles.calling}>Calling{dots}</Text>
-        )}
+        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.phone}>{number}</Text>
+        {isCalling ? <Timer /> : <CallingLoader />}
       </View>
       <CallingButton onPress={handleCallingButton} />
     </Wrapper>
   );
 };
 
-export default CallingScreen;
-
 const styles = StyleSheet.create({
   spacer: {
     marginTop: 30,
   },
-
   detailsContainer: {
-    // flex: 1,
     marginTop: 50,
     justifyContent: 'center',
     alignItems: 'center',
@@ -80,14 +62,11 @@ const styles = StyleSheet.create({
     color: '#333',
   },
   phone: {
-    fontSize: 40,
+    fontSize: 32,
     fontWeight: '500',
     color: '#333',
     marginVertical: 20,
   },
-  calling: {
-    fontSize: 20,
-    fontWeight: '500',
-    color: '#4d4d4d',
-  },
 });
+
+export default CallingScreen;
