@@ -1,16 +1,15 @@
 import React, {useLayoutEffect, useState} from 'react';
-import {Alert, BackHandler, PermissionsAndroid, Platform} from 'react-native';
-import Contacts, {Contact} from 'react-native-contacts';
+import {Alert, BackHandler} from 'react-native';
 
 import CustomKeyboard from '../../../components/CustomKeyboard';
+import {useAppSelector} from '../../../global/hooks';
 
 const DialingScreen = () => {
-  const [contacts, setContacts] = useState<Contact[]>([]);
   const [search, setSearch] = useState('');
 
-  useLayoutEffect(() => {
-    requestContactsPermission();
+  const {contacts} = useAppSelector(state => state.contacts);
 
+  useLayoutEffect(() => {
     // back press handler and exit app
     const backAction = () => {
       Alert.alert('Hold on!', 'Are you sure you want to exit?', [
@@ -32,44 +31,6 @@ const DialingScreen = () => {
     return () => backHandler.remove();
   }, []);
 
-  const requestContactsPermission = async () => {
-    try {
-      if (Platform.OS === 'android') {
-        const granted = await PermissionsAndroid.request(
-          PermissionsAndroid.PERMISSIONS.READ_CONTACTS,
-          {
-            title: 'Contacts',
-            message: 'This app would like to view your contacts.',
-            buttonPositive: 'Please accept bare mortal',
-          },
-        );
-        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-          loadContacts();
-        } else {
-          Alert.alert('Permission to access contacts was denied');
-          console.warn('Permission to access contacts was denied');
-        }
-      } else {
-        loadContacts();
-      }
-    } catch (e) {
-      console.warn('Error while requesting contacts permission', e);
-    }
-  };
-
-  const loadContacts = async () => {
-    try {
-      const fetchedContacts = await Contacts.getAll();
-      fetchedContacts.sort((a: Contact, b: Contact) =>
-        a.givenName.localeCompare(b.givenName),
-      );
-      setContacts(fetchedContacts);
-    } catch (e) {
-      Alert.alert('Permission to access contacts was denied');
-      console.warn('Permission to access contacts was denied');
-    }
-  };
-
   const formattedPhoneNumber = (phoneNumber: string) =>
     phoneNumber.replace(/[^\d]/g, '');
 
@@ -82,8 +43,6 @@ const DialingScreen = () => {
     }
     return false;
   });
-
-  console.log('filteredContacts', filteredContacts);
 
   return (
     <CustomKeyboard

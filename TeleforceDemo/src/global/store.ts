@@ -1,6 +1,7 @@
 import {configureStore} from '@reduxjs/toolkit';
 
 import {networkSlice} from './connectionSlice';
+import {contactsSlice} from './contactsSlice';
 import {userSlice} from './userSlice';
 
 // ...
@@ -9,6 +10,7 @@ export const store = configureStore({
   reducer: {
     user: userSlice.reducer,
     connection: networkSlice.reducer,
+    contacts: contactsSlice.reducer,
   },
 });
 
