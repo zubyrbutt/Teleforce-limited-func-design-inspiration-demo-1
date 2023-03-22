@@ -36,7 +36,7 @@ const AppStack = createNativeStackNavigator<AppStackParamList>();
 function AppNav() {
   return (
     <AppStack.Navigator
-      initialRouteName="Test"
+      // initialRouteName="Test"
       screenOptions={{
         headerShown: false,
       }}>

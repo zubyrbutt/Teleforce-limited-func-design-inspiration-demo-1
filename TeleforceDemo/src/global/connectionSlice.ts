@@ -1,5 +1,3 @@
-// internet slice
-
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 import type {RootState} from './store';
@@ -9,7 +7,7 @@ export interface NetworkState {
 }
 
 const initialState: NetworkState = {
-  isOnline: false,
+  isOnline: true,
 };
 
 export const networkSlice = createSlice({

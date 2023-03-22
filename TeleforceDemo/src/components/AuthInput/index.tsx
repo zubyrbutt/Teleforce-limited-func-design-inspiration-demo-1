@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 40,
     paddingHorizontal: 10,
+    color: '#333',
   },
   error: {
     color: 'red',

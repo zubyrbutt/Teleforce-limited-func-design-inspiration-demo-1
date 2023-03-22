@@ -1,7 +1,8 @@
 import React from 'react';
-import {StyleSheet, Text} from 'react-native';
+import {StyleSheet} from 'react-native';
 
 import {Wrapper} from '../../../components';
+import ConnectionLoader from '../../../components/ConnectionLoader';
 
 const TestScreen = () => {
   return (
@@ -9,7 +10,7 @@ const TestScreen = () => {
       style={{
         justifyContent: 'center',
       }}>
-      <Text>tst</Text>
+       <ConnectionLoader />
     </Wrapper>
   );
 };

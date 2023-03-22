@@ -18,7 +18,7 @@ interface Props {
 }
 
 const CallingScreen: React.FC<Props> = ({route}) => {
-  const {name = 'Un Known', number = 'Un Known'} = route.params;
+  const {name = 'Unknown', number = 'Unknown'} = route.params;
   const [isCalling, setIsCalling] = useState(false);
   const navigation = useNavigation<any>();
 

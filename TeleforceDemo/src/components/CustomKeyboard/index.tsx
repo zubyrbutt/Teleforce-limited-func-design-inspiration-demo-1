@@ -36,7 +36,7 @@ const CustomKeyboard = (props: Props) => {
   const handleCallPress = () => {
     const number = data[0]?.phoneNumbers[0]?.number;
     navigation.navigate('Calling', {
-      name: data[0]?.givenName || 'Un Known',
+      name: data[0]?.givenName || 'Unknown',
       number: number || value,
     });
   };
@@ -56,7 +56,7 @@ const CustomKeyboard = (props: Props) => {
                 opacity: props.data[0]?.givenName ? 1 : 0,
               },
             ]}>
-            {props.data[0]?.givenName || 'No Name'}
+            {props.data[0]?.givenName || 'Unknown'}
           </Text>
         </TouchableOpacity>
         <View style={styles.phoneInputContainer}>

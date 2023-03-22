@@ -6,13 +6,14 @@ import {useNavigation} from '@react-navigation/native';
 
 import {Wrapper} from '../../../components';
 import {setContacts} from '../../../global/contactsSlice';
-import {useAppDispatch} from '../../../global/hooks';
+import {useAppDispatch, useAppSelector} from '../../../global/hooks';
 import {openSettings, requestContactsPermission} from '../../../utils/helpers';
 
 const ConnectingScreen = () => {
   const navigation = useNavigation<any>();
 
   const dispatch = useAppDispatch();
+  const {isOnline} = useAppSelector(state => state.connection);
 
   useEffect(() => {
     handleGetContacts();
@@ -59,7 +60,12 @@ const ConnectingScreen = () => {
   return (
     <Wrapper style={styles.container}>
       <ActivityIndicator size="large" />
-      <Text>Connecting to the server...</Text>
+      <Text
+        style={{
+          color: 'red',
+        }}>
+        {isOnline ? 'connecting' : 'lost connection'}
+      </Text>
     </Wrapper>
   );
 };
