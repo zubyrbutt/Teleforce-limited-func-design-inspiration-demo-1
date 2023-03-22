@@ -3,6 +3,7 @@ import {StyleSheet, TouchableOpacity} from 'react-native';
 import {SvgXml} from 'react-native-svg';
 
 import {CallingIcon} from '../../assets/icons/svg';
+import {colors} from '../../theme/theme';
 
 interface Props {
   isDisabled?: boolean;
@@ -15,22 +16,23 @@ const ICON_SIZE = 40;
 
 const CallingButton: React.FC<Props> = ({
   isDisabled = false,
-  backgroundColor = '#E64530',
+  backgroundColor = colors.cancel,
   onPress,
 }) => {
-  const containerStyles: any = [
-    styles.container,
-    {backgroundColor: backgroundColor, shadowColor: backgroundColor},
-  ];
-
   return (
     <TouchableOpacity
       disabled={isDisabled}
       onPress={onPress}
       activeOpacity={0.8}
-      style={containerStyles}>
+      style={[
+        styles.container,
+        {
+          backgroundColor: backgroundColor,
+          shadowColor: backgroundColor,
+        },
+      ]}>
       <SvgXml
-        fill="#fff"
+        fill={colors.white}
         width={ICON_SIZE}
         height={ICON_SIZE}
         xml={CallingIcon}
@@ -46,8 +48,6 @@ const styles = StyleSheet.create({
     borderRadius: BUTTON_SIZE / 2,
     justifyContent: 'center',
     alignItems: 'center',
-    // position: 'absolute',
-    // bottom: 30,
     shadowOffset: {
       width: 0,
       height: 15,

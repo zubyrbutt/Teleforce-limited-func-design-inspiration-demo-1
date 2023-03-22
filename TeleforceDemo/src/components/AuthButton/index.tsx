@@ -2,6 +2,8 @@ import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
+import {colors, fontSizes} from '../../theme/theme';
+
 interface AuthButtonProps {
   onPress: () => void;
   title: string;
@@ -11,7 +13,7 @@ interface AuthButtonProps {
 const AuthButton = ({onPress, title, isDisable = true}: AuthButtonProps) => {
   return (
     <TouchableOpacity
-        disabled={isDisable}
+      disabled={isDisable}
       activeOpacity={0.8}
       onPress={onPress}
       style={{width: '85%'}}>
@@ -32,10 +34,9 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
-    // width: '80%',
     height: 50,
     borderRadius: 25,
-    shadowColor: '#000',
+    shadowColor: colors.black,
     shadowOffset: {
       width: 0,
       height: 9,
@@ -45,8 +46,8 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   text: {
-    color: '#fff',
-    fontSize: 16,
+    color: colors.white,
+    fontSize: fontSizes.body1,
     fontWeight: 'bold',
   },
 });

@@ -14,23 +14,7 @@ interface Props {
 const FooterBar = ({isDisabled, onPress, backgroundColor}: Props) => {
   const {width} = useWindowDimensions();
   return (
-    <View
-      style={{
-        position: 'absolute',
-        bottom: 0,
-      }}>
-      <View
-        style={{
-          alignSelf: 'center',
-          top: 65,
-        }}>
-        <CallingButton
-          isDisabled={isDisabled}
-          onPress={onPress}
-          backgroundColor={backgroundColor}
-        />
-      </View>
-
+    <View style={styles.container}>
       <SvgXml
         style={{
           top: 10,
@@ -39,10 +23,27 @@ const FooterBar = ({isDisabled, onPress, backgroundColor}: Props) => {
         height={100}
         xml={CurveBar}
       />
+      <View style={styles.button}>
+        <CallingButton
+          isDisabled={isDisabled}
+          onPress={onPress}
+          backgroundColor={backgroundColor}
+        />
+      </View>
     </View>
   );
 };
 
 export default FooterBar;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    position: 'absolute',
+    bottom: 0,
+  },
+  button: {
+    alignSelf: 'center',
+    position: 'absolute',
+    bottom: 30,
+  },
+});

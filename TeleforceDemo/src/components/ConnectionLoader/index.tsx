@@ -1,5 +1,5 @@
 import React from 'react';
-import {ActivityIndicator, StyleSheet, Text, View} from 'react-native';
+import {ActivityIndicator, Text, View} from 'react-native';
 
 import {useAppSelector} from '../../global/hooks';
 
@@ -14,5 +14,3 @@ const ConnectionLoader = () => {
 };
 
 export default ConnectionLoader;
-
-const styles = StyleSheet.create({});

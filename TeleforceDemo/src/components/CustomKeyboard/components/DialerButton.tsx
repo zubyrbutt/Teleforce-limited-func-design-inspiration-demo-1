@@ -1,6 +1,8 @@
 import React, {memo} from 'react';
 import {Pressable, StyleSheet, Text} from 'react-native';
 
+import {colors, fontSizes} from '../../../theme/theme';
+
 interface Props {
   number: string;
   letters: string;
@@ -25,23 +27,23 @@ const styles = StyleSheet.create({
   dialerButton: {
     flex: 1,
     height: '100%',
-    backgroundColor: '#ffffff',
+    backgroundColor: colors.white,
     borderRadius: 5,
     margin: 5,
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: '#ddd',
+    borderColor: colors.gray,
   },
   dialerButtonText: {
-    fontSize: 25,
+    fontSize: fontSizes.h5,
     fontWeight: 'bold',
-    color: '#000',
+    color: colors.black,
     marginBottom: 1,
   },
   dialerButtonLetters: {
     fontSize: 12,
-    color: '#9f9f9f',
+    color: colors.placeholder,
     fontWeight: 'bold',
   },
 });

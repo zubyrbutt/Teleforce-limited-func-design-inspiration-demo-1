@@ -5,6 +5,7 @@ import {Easing} from 'react-native-reanimated';
 import {SvgXml} from 'react-native-svg';
 
 import {AvatarIcon} from '../../../../assets/icons/svg';
+import {colors} from '../../../../theme/theme';
 
 interface MotiViewWrapperProps {
   index: number;
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
     width: 110,
     height: 110,
     borderRadius: 100,
-    backgroundColor: '#0283BB',
+    backgroundColor: colors.info,
   },
   center: {
     justifyContent: 'center',

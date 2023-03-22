@@ -5,6 +5,7 @@ import {SvgXml} from 'react-native-svg';
 import {useNavigation} from '@react-navigation/native';
 
 import {ClearIcon} from '../../assets/icons/svg';
+import {colors} from '../../theme/theme';
 import CallingButton from '../CallingButton';
 import FooterBar from '../CurveBar';
 import DialerRow from './components/DialerRow';
@@ -78,10 +79,7 @@ const CustomKeyboard = (props: Props) => {
             </TouchableOpacity>
           ) : (
             <View
-              style={{
-                width: 40,
-                height: 40,
-              }}
+              style={{height: 40, width: 40, backgroundColor: 'transparent'}}
             />
           )}
         </View>
@@ -94,7 +92,7 @@ const CustomKeyboard = (props: Props) => {
       <FooterBar
         isDisabled={isDisable}
         onPress={handleCallPress}
-        backgroundColor="#3FAE6C"
+        backgroundColor={colors.green}
       />
     </View>
   );

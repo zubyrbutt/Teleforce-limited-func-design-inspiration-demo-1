@@ -3,6 +3,7 @@ import React from 'react';
 import {
   Alert,
   Image,
+  Platform,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -13,10 +14,12 @@ import {LockIcon, UserIcon} from '../../../assets/icons/svg';
 import {AuthButton, AuthInput, Wrapper} from '../../../components';
 import {useAppDispatch} from '../../../global/hooks';
 import {login} from '../../../global/userSlice';
+import {colors, fontSizes} from '../../../theme/theme';
 import {setItem} from '../../../utils/storage';
 import {loginValidationSchema} from '../../../utils/validationSchema';
 
 const LOGO = require('../../../assets/icons/Teo_logo.png');
+const LOGO_SIZE = 100;
 
 const CREDENTIALS = {
   username: 'admin',
@@ -43,13 +46,16 @@ const LoginScreen = () => {
   };
 
   return (
-    <Wrapper>
+    <Wrapper
+      style={{
+        padding: Platform.OS === 'android' ? 0 : 40,
+      }}>
       <View style={styles.logo}>
         <Image
           source={LOGO}
           style={{
-            width: 100,
-            height: 100,
+            width: LOGO_SIZE,
+            height: LOGO_SIZE,
           }}
           resizeMode="contain"
         />
@@ -64,7 +70,6 @@ const LoginScreen = () => {
           handleSubmit,
           values,
           errors,
-          isValid,
           touched,
         }) => (
           <>
@@ -89,13 +94,7 @@ const LoginScreen = () => {
               error={touched.password && errors.password}
             />
 
-            <View
-              style={{
-                marginBottom: 30,
-                alignSelf: 'center',
-                width: '85%',
-                alignItems: 'flex-end',
-              }}>
+            <View style={styles.forgotContainer}>
               <TouchableOpacity onPress={() => console.log('Forgot password')}>
                 <Text style={styles.forgotText}>Forgot password?</Text>
               </TouchableOpacity>
@@ -120,9 +119,15 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginBottom: 70,
   },
+  forgotContainer: {
+    marginBottom: 30,
+    alignSelf: 'center',
+    width: '85%',
+    alignItems: 'flex-end',
+  },
   forgotText: {
-    fontSize: 14,
+    fontSize: fontSizes.button,
     fontWeight: '500',
-    color: '#333',
+    color: colors.text,
   },
 });

@@ -1,5 +1,7 @@
 import {StyleSheet} from 'react-native';
 
+import {colors} from '../../theme/theme';
+
 export const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fafafa',
@@ -14,13 +16,13 @@ export const styles = StyleSheet.create({
   name: {
     fontSize: 30,
     fontWeight: '500',
-    color: '#000',
+    color: colors.black,
   },
   phoneInputContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    borderBottomColor: '#e1e3e1',
+    borderBottomColor: colors.gray,
     borderBottomWidth: 1,
     marginBottom: 15,
   },
@@ -38,7 +40,7 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
     fontSize: 30,
     fontWeight: '500',
-    color: '#000',
+    color: colors.black,
   },
   dialer: {
     width: '100%',

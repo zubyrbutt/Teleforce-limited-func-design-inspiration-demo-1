@@ -2,6 +2,8 @@ import React, {Fragment, memo} from 'react';
 import {StyleSheet, Text, TextInput, View} from 'react-native';
 import {SvgXml} from 'react-native-svg';
 
+import {colors, fontSizes} from '../../theme/theme';
+
 type AuthInputProps = {
   label: string;
   icon: string;
@@ -33,6 +35,7 @@ const AuthInput: React.FC<AuthInputProps> = memo(
             <SvgXml width={20} height={20} style={styles.icon} xml={icon} />
             <TextInput
               placeholder={placeholder}
+              placeholderTextColor={colors.placeholder}
               style={styles.input}
               value={value}
               onChangeText={onChangeText}
@@ -46,7 +49,6 @@ const AuthInput: React.FC<AuthInputProps> = memo(
         <View
           style={{
             width: '85%',
-            // backgroundColor: 'gray',
             bottom: 5,
           }}>
           <Text style={styles.error}>{error}</Text>
@@ -60,13 +62,13 @@ const styles = StyleSheet.create({
   container: {
     width: '85%',
     marginVertical: 10,
-    borderBottomColor: '#ccc',
+    borderBottomColor: colors.gray,
     borderBottomWidth: 1,
   },
   title: {
-    fontSize: 14,
+    fontSize: fontSizes.subtitle2,
     fontWeight: '500',
-    color: '#333',
+    color: colors.text,
   },
   inputWrapper: {
     flexDirection: 'row',
@@ -81,11 +83,11 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 40,
     paddingHorizontal: 10,
-    color: '#333',
+    color: colors.text,
   },
   error: {
     color: 'red',
-    fontSize: 12,
+    fontSize: fontSizes.caption,
     fontWeight: '500',
     textAlign: 'left',
   },

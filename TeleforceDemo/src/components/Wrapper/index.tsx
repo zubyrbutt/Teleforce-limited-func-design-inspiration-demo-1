@@ -2,6 +2,8 @@ import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import {SafeAreaViewProps} from 'react-native-safe-area-context';
 
+import {colors} from '../../theme/theme';
+
 const Wrapper = (props: SafeAreaViewProps) => {
   const {children, style} = props;
   return (
@@ -14,7 +16,7 @@ export default Wrapper;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: colors.background,
     alignItems: 'center',
     padding: 40,
     // justifyContent: 'center',

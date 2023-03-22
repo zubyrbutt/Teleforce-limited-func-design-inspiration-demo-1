@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
+import {colors, fontSizes} from '../../../../theme/theme';
+
 interface Props {}
 
 const CallingLoader: React.FC<Props> = () => {
@@ -27,9 +29,9 @@ const CallingLoader: React.FC<Props> = () => {
 
 const styles = StyleSheet.create({
   calling: {
-    fontSize: 20,
+    fontSize: fontSizes.h6,
     fontWeight: '500',
-    color: '#4d4d4d',
+    color: colors.text,
   },
 });
 
