@@ -9,7 +9,8 @@ type AuthInputProps = {
   value?: string;
   onChangeText?: (text: string) => void;
   secureTextEntry?: boolean;
-  error?: string;
+  error?: string | undefined | boolean;
+  onBlur: (e: any) => void;
 };
 
 const AuthInput: React.FC<AuthInputProps> = memo(
@@ -21,6 +22,7 @@ const AuthInput: React.FC<AuthInputProps> = memo(
     onChangeText,
     secureTextEntry = false,
     error,
+    onBlur,
   }) => {
     return (
       <Fragment>
@@ -37,6 +39,7 @@ const AuthInput: React.FC<AuthInputProps> = memo(
               secureTextEntry={secureTextEntry}
               autoCapitalize="none"
               autoCorrect={false}
+              onBlur={onBlur}
             />
           </View>
         </View>

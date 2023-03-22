@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: '#ddd',
   },
   dialerButtonText: {
     fontSize: 25,

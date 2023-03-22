@@ -1,6 +1,13 @@
 import {Formik} from 'formik';
 import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Alert,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
 import {LockIcon, UserIcon} from '../../../assets/icons/svg';
 import {AuthButton, AuthInput, Wrapper} from '../../../components';
@@ -30,6 +37,8 @@ const LoginScreen = () => {
       // navigation.navigate('Home');
       dispatch(login({username, password, isLoggedIn: true}));
       setItem('user', {username, password, isLoggedIn: true});
+    } else {
+      Alert.alert('', 'Invalid username or password');
     }
   };
 
@@ -56,6 +65,7 @@ const LoginScreen = () => {
           values,
           errors,
           isValid,
+          touched,
         }) => (
           <>
             <AuthInput
@@ -64,8 +74,8 @@ const LoginScreen = () => {
               placeholder="Type your username"
               value={values.username}
               onChangeText={handleChange('username')}
-              // onBlur={handleBlur('username')}
-              error={errors.username}
+              onBlur={handleBlur('username')}
+              error={touched.username && errors.username}
             />
 
             <AuthInput
@@ -75,13 +85,13 @@ const LoginScreen = () => {
               value={values.password}
               onChangeText={handleChange('password')}
               secureTextEntry
-              // onBlur={handleBlur('password')}
-              error={errors.password}
+              onBlur={handleBlur('password')}
+              error={touched.password && errors.password}
             />
 
             <View
               style={{
-                marginBottom: 40,
+                marginBottom: 30,
                 alignSelf: 'center',
                 width: '85%',
                 alignItems: 'flex-end',
@@ -107,7 +117,7 @@ export default LoginScreen;
 
 const styles = StyleSheet.create({
   logo: {
-    marginTop: 50,
+    marginTop: 30,
     marginBottom: 70,
   },
   forgotText: {
