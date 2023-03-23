@@ -93,9 +93,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.teleforcedemo"
+    namespace "com.teleforce"
     defaultConfig {
-        applicationId "com.teleforcedemo"
+        applicationId "com.teleforce"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
