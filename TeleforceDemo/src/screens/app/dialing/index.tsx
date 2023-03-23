@@ -1,8 +1,10 @@
-import React, {useLayoutEffect, useState} from 'react';
-import {Alert, BackHandler} from 'react-native';
+import React, { useEffect, useState } from 'react'
+import { Alert, BackHandler } from 'react-native'
 
-import CustomKeyboard from '../../../components/CustomKeyboard';
-import {useAppSelector} from '../../../global/hooks';
+import { useNavigation } from '@react-navigation/native'
+
+import CustomKeyboard from '../../../components/CustomKeyboard'
+import { useAppSelector } from '../../../global/hooks'
 
 const formattedPhoneNumber = (phoneNumber: string) =>
   phoneNumber.replace(/[^\d]/g, '');
@@ -12,22 +14,25 @@ const DialingScreen = React.memo(() => {
 
   const {contacts} = useAppSelector(state => state.contacts);
 
-  useLayoutEffect(() => {
-    const backAction = () => {
-      Alert.alert('Hold on!', 'Are you sure you want to exit?', [
-        {
-          text: 'Cancel',
-          onPress: () => null,
-          style: 'cancel',
-        },
-        {text: 'YES', onPress: () => BackHandler.exitApp()},
-      ]);
-      return true;
-    };
+  const navigation = useNavigation();
 
+  useEffect(() => {
     const backHandler = BackHandler.addEventListener(
       'hardwareBackPress',
-      backAction,
+      () => {
+        if (navigation.isFocused()) {
+          Alert.alert('Hold on!', 'Are you sure you want to exit the app?', [
+            {
+              text: 'Cancel',
+              onPress: () => null,
+              style: 'cancel',
+            },
+            {text: 'YES', onPress: BackHandler.exitApp},
+          ]);
+
+          return true;
+        }
+      },
     );
 
     return () => backHandler.remove();
