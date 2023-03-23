@@ -1,4 +1,4 @@
-package com.teleforcedemo;
+package com.teleforce;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

@@ -7,12 +7,14 @@ export interface UserState {
   username: string;
   password: string;
   isLoggedIn: boolean;
+  token?: any;
 }
 
 const initialState: UserState = {
   username: '',
   password: '',
   isLoggedIn: false,
+  token: '',
 };
 
 export const userSlice = createSlice({
@@ -29,9 +31,15 @@ export const userSlice = createSlice({
       state.password = '';
       state.isLoggedIn = false;
     },
+    setDeviceToken: (state, action: PayloadAction<any>) => {
+      state.token = action.payload;
+    },
   },
 });
 
-export const { login } = userSlice.actions;
+export const { login, setDeviceToken } = userSlice.actions;
 
 export const selectUser = (state: RootState) => state.user;
+export const selectToken = (state: RootState) => state.user.token;
+
+export default userSlice.reducer;

@@ -1,11 +1,13 @@
 import { LockIcon, UserIcon } from 'assets/icons/svg';
 import { Formik } from 'formik';
-import { useAppDispatch } from 'global/hooks';
+import { useAppDispatch, useAppSelector } from 'global/hooks';
 import { login } from 'global/userSlice';
+import { useNotification } from 'hooks/useNotification';
 import React from 'react';
-import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { KeyboardAvoidingScrollView } from 'react-native-keyboard-avoiding-scroll-view';
 import { colors, fontSizes } from 'theme';
+import { onSendNotification } from 'utils/_firebase';
 import { loginValidationSchema } from 'utils/validationSchema';
 
 import { AuthButton, AuthInput } from '@components';
@@ -20,6 +22,8 @@ const CREDENTIALS = {
 
 const LoginScreen = () => {
   const dispatch = useAppDispatch();
+  const deviceToken = useAppSelector((state) => state.user.token);
+  const { displayNotification } = useNotification();
 
   const handleLogin = (values: { username: string; password: string }) => {
     const { username, password } = values;
@@ -27,8 +31,25 @@ const LoginScreen = () => {
     if (username === CREDENTIALS.username && password === CREDENTIALS.password) {
       dispatch(login({ username, password, isLoggedIn: true }));
     } else {
-      Alert.alert('', 'Invalid username or password');
+      // displayNotification is a local notification function
+      // displayNotification(
+      //   'Invalid credentials',
+      //   'Please check your username and password. and try again',
+      // );
+      sendNotification();
     }
+  };
+
+  const sendNotification = async () => {
+    onSendNotification({
+      to: deviceToken.token,
+      notification: {
+        title: 'Invalid credentials',
+        body: 'Please check your username and password. and try again',
+        sound: 'default',
+        priority: 'high',
+      },
+    });
   };
 
   return (

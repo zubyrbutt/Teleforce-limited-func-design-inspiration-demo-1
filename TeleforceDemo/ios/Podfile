@@ -19,9 +19,10 @@ linkage = ENV['USE_FRAMEWORKS']
 if linkage != nil
   Pod::UI.puts "Configuring Pod with #{linkage}ally linked Frameworks".green
   use_frameworks! :linkage => linkage.to_sym
+  
 end
 
-target 'TeleforceDemo' do
+target 'Teleforce' do
   config = use_native_modules!
 
   pod 'react-native-contacts', :path => '../node_modules/react-native-contacts'
@@ -45,7 +46,7 @@ target 'TeleforceDemo' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  target 'TeleforceDemoTests' do
+  target 'TeleforceTests' do
     inherit! :complete
     # Pods for testing
   end

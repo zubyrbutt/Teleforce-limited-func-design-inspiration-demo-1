@@ -1,6 +1,8 @@
 import { setOnline } from 'global/connectionSlice';
 import { useAppDispatch, useAppSelector } from 'global/hooks';
+import { setDeviceToken } from 'global/userSlice';
 import React from 'react';
+import { getFCMToken, notificationListener } from 'utils/_firebase';
 
 import NetInfo from '@react-native-community/netinfo';
 import { NavigationContainer } from '@react-navigation/native';
@@ -23,6 +25,12 @@ function RootNav() {
           isOnline: !!state.isConnected,
         }),
       );
+    });
+    notificationListener();
+
+    getFCMToken().then((token) => {
+      console.log('FCM Token', token);
+      dispatch(setDeviceToken({ token: token }));
     });
     return () => {
       unsubscribe();
