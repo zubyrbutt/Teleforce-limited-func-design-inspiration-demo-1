@@ -1,7 +1,7 @@
-import React from 'react'
-import { StyleSheet, TouchableOpacity } from 'react-native'
-import { SvgXml } from 'react-native-svg'
-import { colors } from 'theme'
+import React from 'react';
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import { SvgXml } from 'react-native-svg';
+import { colors } from 'theme';
 
 interface Props {
   isDisabled?: boolean;
@@ -27,34 +27,30 @@ const CallingButton: React.FC<Props> = ({
       style={[
         styles.container,
         {
-          backgroundColor: backgroundColor,
+          backgroundColor,
           shadowColor: backgroundColor,
         },
-      ]}>
-      <SvgXml
-        fill={colors.white}
-        width={ICON_SIZE}
-        height={ICON_SIZE}
-        xml={icon}
-      />
+      ]}
+    >
+      <SvgXml fill={colors.white} width={ICON_SIZE} height={ICON_SIZE} xml={icon} />
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    width: BUTTON_SIZE,
-    height: BUTTON_SIZE,
-    borderRadius: BUTTON_SIZE / 2,
-    justifyContent: 'center',
     alignItems: 'center',
+    borderRadius: BUTTON_SIZE / 2,
+    elevation: 5,
+    height: BUTTON_SIZE,
+    justifyContent: 'center',
     shadowOffset: {
       width: 0,
       height: 15,
     },
     shadowOpacity: 0.4,
     shadowRadius: 20,
-    elevation: 5,
+    width: BUTTON_SIZE,
   },
 });
 

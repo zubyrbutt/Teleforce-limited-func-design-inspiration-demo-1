@@ -1,10 +1,10 @@
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import {ConnectingScreen} from '../screens/app';
+import { ConnectingScreen } from '../screens/app';
 
-type AuthStackParamList = {
+interface AuthStackParamList {
   Connecting: undefined;
-};
+}
 
 const NetWorkStack = createNativeStackNavigator<AuthStackParamList>();
 

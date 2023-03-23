@@ -1,8 +1,8 @@
-import {configureStore} from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 
-import {networkSlice} from './connectionSlice';
-import {contactsSlice} from './contactsSlice';
-import {userSlice} from './userSlice';
+import { networkSlice } from './connectionSlice';
+import { contactsSlice } from './contactsSlice';
+import { userSlice } from './userSlice';
 
 // ...
 

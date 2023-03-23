@@ -1,7 +1,7 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
-import type {PayloadAction} from '@reduxjs/toolkit';
-import type {RootState} from './store';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import type { RootState } from './store';
 
 export interface UserState {
   username: string;
@@ -24,7 +24,7 @@ export const userSlice = createSlice({
       state.password = action.payload.password;
       state.isLoggedIn = true;
     },
-    logout: state => {
+    logout: (state) => {
       state.username = '';
       state.password = '';
       state.isLoggedIn = false;
@@ -32,6 +32,6 @@ export const userSlice = createSlice({
   },
 });
 
-export const {login} = userSlice.actions;
+export const { login } = userSlice.actions;
 
 export const selectUser = (state: RootState) => state.user;

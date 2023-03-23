@@ -1,15 +1,15 @@
-import { ClearIcon } from 'assets/icons/svg'
-import React, { useCallback } from 'react'
-import { Keyboard, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import { SvgXml } from 'react-native-svg'
-import { colors } from 'theme'
+import { ClearIcon } from 'assets/icons/svg';
+import React, { useCallback } from 'react';
+import { Keyboard, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { SvgXml } from 'react-native-svg';
+import { colors } from 'theme';
 
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native';
 
-import FooterBar from '../CurveBar'
-import DialerRow from './components/DialerRow'
-import { dialerRows } from './dialerData'
-import { styles } from './styles'
+import FooterBar from '../CurveBar';
+import DialerRow from './components/DialerRow';
+import { dialerRows } from './dialerData';
+import { styles } from './styles';
 
 interface Props {
   data: any;
@@ -18,7 +18,7 @@ interface Props {
 }
 
 const CustomKeyboard = (props: Props) => {
-  const {data, value, setSearch} = props;
+  const { data, value, setSearch } = props;
   const navigation = useNavigation<any>();
   const handleButtonPress = (value: string) => {
     if (value.length === 17) {
@@ -45,10 +45,7 @@ const CustomKeyboard = (props: Props) => {
   return (
     <View style={styles.container}>
       <View>
-        <TouchableOpacity
-          activeOpacity={0.8}
-          onPress={handleCallPress}
-          disabled={isDisable}>
+        <TouchableOpacity activeOpacity={0.8} onPress={handleCallPress} disabled={isDisable}>
           <Text
             numberOfLines={1}
             style={[
@@ -56,7 +53,8 @@ const CustomKeyboard = (props: Props) => {
               {
                 opacity: props.data[0]?.givenName ? 1 : 0,
               },
-            ]}>
+            ]}
+          >
             {props.data[0]?.givenName || 'Unknown'}
           </Text>
         </TouchableOpacity>
@@ -71,15 +69,11 @@ const CustomKeyboard = (props: Props) => {
             }}
           />
           {props.value.length > 0 ? (
-            <TouchableOpacity
-              onPress={handleBackspacePress}
-              style={styles.clearIcon}>
+            <TouchableOpacity onPress={handleBackspacePress} style={styles.clearIcon}>
               <SvgXml width={30} height={30} xml={ClearIcon} />
             </TouchableOpacity>
           ) : (
-            <View
-              style={{height: 40, width: 40, backgroundColor: 'transparent'}}
-            />
+            <View style={styles.transparent} />
           )}
         </View>
       </View>
@@ -88,11 +82,7 @@ const CustomKeyboard = (props: Props) => {
           <DialerRow key={index} buttons={row.buttons} />
         ))}
       </View>
-      <FooterBar
-        isDisabled={isDisable}
-        onPress={handleCallPress}
-        backgroundColor={colors.green}
-      />
+      <FooterBar isDisabled={isDisable} onPress={handleCallPress} backgroundColor={colors.green} />
     </View>
   );
 };

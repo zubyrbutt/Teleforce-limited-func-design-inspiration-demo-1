@@ -1,9 +1,9 @@
-import React, { Fragment, memo } from 'react'
-import { StyleSheet, Text, TextInput, View } from 'react-native'
-import { SvgXml } from 'react-native-svg'
-import { colors, fontSizes } from 'theme'
+import React, { Fragment, memo } from 'react';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { SvgXml } from 'react-native-svg';
+import { colors, fontSizes } from 'theme';
 
-type AuthInputProps = {
+interface AuthInputProps {
   label: string;
   icon: string;
   placeholder?: string;
@@ -12,7 +12,7 @@ type AuthInputProps = {
   secureTextEntry?: boolean;
   error?: string | undefined | boolean;
   onBlur: (e: any) => void;
-};
+}
 
 const AuthInput: React.FC<AuthInputProps> = memo(
   ({
@@ -45,12 +45,8 @@ const AuthInput: React.FC<AuthInputProps> = memo(
             />
           </View>
         </View>
-        <View
-          style={{
-            width: '85%',
-            bottom: 5,
-          }}>
-          <Text style={styles.error}>{error}</Text>
+        <View style={styles.error}>
+          <Text style={styles.errorText}>{error}</Text>
         </View>
       </Fragment>
     );
@@ -59,36 +55,40 @@ const AuthInput: React.FC<AuthInputProps> = memo(
 
 const styles = StyleSheet.create({
   container: {
-    width: '85%',
-    marginVertical: 10,
     borderBottomColor: colors.gray,
     borderBottomWidth: 1,
+    marginVertical: 10,
+    width: '85%',
   },
-  title: {
-    fontSize: fontSizes.subtitle2,
+  error: {
+    bottom: 5,
+    width: '85%',
+  },
+  errorText: {
+    color: colors.error,
+    fontSize: fontSizes.caption,
     fontWeight: '500',
-    color: colors.text,
-  },
-  inputWrapper: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 4,
-    marginBottom: 8,
+    textAlign: 'left',
   },
   icon: {
     marginLeft: 4,
   },
   input: {
+    color: colors.text,
     flex: 1,
     height: 40,
     paddingHorizontal: 10,
-    color: colors.text,
   },
-  error: {
-    color: 'red',
-    fontSize: fontSizes.caption,
+  inputWrapper: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    marginBottom: 8,
+    marginTop: 4,
+  },
+  title: {
+    color: colors.text,
+    fontSize: fontSizes.subtitle2,
     fontWeight: '500',
-    textAlign: 'left',
   },
 });
 

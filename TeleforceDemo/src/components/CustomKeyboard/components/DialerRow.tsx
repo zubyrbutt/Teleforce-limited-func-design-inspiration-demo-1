@@ -1,5 +1,5 @@
-import React, {memo} from 'react';
-import {StyleSheet, View} from 'react-native';
+import React, { memo } from 'react';
+import { StyleSheet, View } from 'react-native';
 
 import DialerButton from './DialerButton';
 
@@ -13,10 +13,10 @@ interface Button {
   onLongPress: () => void;
 }
 
-const DialerRow = memo(({buttons}: Props) => {
+const DialerRow = memo(({ buttons }: Props) => {
   return (
     <View style={styles.dialerRow}>
-      {buttons.map(({number, letters, onPress, onLongPress}: Button) => (
+      {buttons.map(({ number, letters, onPress, onLongPress }: Button) => (
         <DialerButton
           key={number}
           number={number}
@@ -33,10 +33,10 @@ export default DialerRow;
 
 const styles = StyleSheet.create({
   dialerRow: {
+    alignItems: 'center',
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
     margin: 10,
   },
 });

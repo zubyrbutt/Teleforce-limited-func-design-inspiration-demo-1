@@ -1,6 +1,6 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-import type {RootState} from './store';
+import type { RootState } from './store';
 
 export interface NetworkState {
   isOnline: boolean;
@@ -20,7 +20,7 @@ export const networkSlice = createSlice({
   },
 });
 
-export const {setOnline} = networkSlice.actions;
+export const { setOnline } = networkSlice.actions;
 
 export const selectNetwork = (state: RootState) => state.connection;
 

@@ -1,16 +1,22 @@
-import { LockIcon, UserIcon } from 'assets/icons/svg'
-import { Formik } from 'formik'
-import { useAppDispatch } from 'global/hooks'
-import { login } from 'global/userSlice'
-import React from 'react'
+import { LockIcon, UserIcon } from 'assets/icons/svg';
+import { Formik } from 'formik';
+import { useAppDispatch } from 'global/hooks';
+import { login } from 'global/userSlice';
+import React from 'react';
 import {
-    Alert, Image, KeyboardAvoidingView, Platform, StyleSheet, Text, TouchableOpacity, View
-} from 'react-native'
-import { colors, fontSizes } from 'theme'
-import { setItem } from 'utils/storage'
-import { loginValidationSchema } from 'utils/validationSchema'
+  Alert,
+  Image,
+  KeyboardAvoidingView,
+  Platform,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import { colors, fontSizes } from 'theme';
+import { loginValidationSchema } from 'utils/validationSchema';
 
-import { AuthButton, AuthInput } from '@components'
+import { AuthButton, AuthInput } from '@components';
 
 const LOGO = require('assets/icons/Teo_logo.png');
 const LOGO_SIZE = 100;
@@ -23,17 +29,13 @@ const CREDENTIALS = {
 const LoginScreen = () => {
   const dispatch = useAppDispatch();
 
-  const handleLogin = (values: {username: string; password: string}) => {
-    const {username, password} = values;
+  const handleLogin = (values: { username: string; password: string }) => {
+    const { username, password } = values;
     console.log('values', values);
 
-    if (
-      username === CREDENTIALS.username &&
-      password === CREDENTIALS.password
-    ) {
+    if (username === CREDENTIALS.username && password === CREDENTIALS.password) {
       // navigation.navigate('Home');
-      dispatch(login({username, password, isLoggedIn: true}));
-      setItem('user', {username, password, isLoggedIn: true});
+      dispatch(login({ username, password, isLoggedIn: true }));
     } else {
       Alert.alert('', 'Invalid username or password');
     }
@@ -42,7 +44,8 @@ const LoginScreen = () => {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={styles.container}>
+      style={styles.container}
+    >
       <View style={styles.logo}>
         <Image
           source={LOGO}
@@ -55,16 +58,10 @@ const LoginScreen = () => {
       </View>
       <Formik
         validationSchema={loginValidationSchema}
-        initialValues={{username: '', password: ''}}
-        onSubmit={handleLogin}>
-        {({
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          values,
-          errors,
-          touched,
-        }) => (
+        initialValues={{ username: '', password: '' }}
+        onSubmit={handleLogin}
+      >
+        {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
           <>
             <AuthInput
               label="Username"
@@ -88,16 +85,16 @@ const LoginScreen = () => {
             />
 
             <View style={styles.forgotContainer}>
-              <TouchableOpacity onPress={() => console.log('Forgot password')}>
+              <TouchableOpacity
+                onPress={() => {
+                  console.log('Forgot password');
+                }}
+              >
                 <Text style={styles.forgotText}>Forgot password?</Text>
               </TouchableOpacity>
             </View>
 
-            <AuthButton
-              title="LOGIN"
-              onPress={handleSubmit}
-              isDisable={false}
-            />
+            <AuthButton title="LOGIN" onPress={handleSubmit} isDisable={false} />
           </>
         )}
       </Formik>
@@ -111,23 +108,23 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background,
     alignItems: 'center',
-    padding: Platform.OS === 'android' ? 0 : 40,
-  },
-  logo: {
-    marginTop: 30,
-    marginBottom: 70,
+    backgroundColor: colors.background,
+    paddingTop: 40,
   },
   forgotContainer: {
-    marginBottom: 30,
-    alignSelf: 'center',
-    width: '85%',
     alignItems: 'flex-end',
+    alignSelf: 'center',
+    marginBottom: 30,
+    width: '85%',
   },
   forgotText: {
+    color: colors.text,
     fontSize: fontSizes.button,
     fontWeight: '500',
-    color: colors.text,
+  },
+  logo: {
+    marginBottom: 70,
+    marginTop: 30,
   },
 });

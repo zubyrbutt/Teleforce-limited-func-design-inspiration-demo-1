@@ -1,5 +1,6 @@
-import {useEffect, useState} from 'react';
-import {StyleSheet, Text} from 'react-native';
+import { useEffect, useState } from 'react';
+import { StyleSheet, Text } from 'react-native';
+import { colors } from 'theme';
 
 const Timer = () => {
   const [seconds, setSeconds] = useState(0);
@@ -9,11 +10,11 @@ const Timer = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       // Increment seconds
-      setSeconds(seconds => {
+      setSeconds((seconds) => {
         if (seconds === 59) {
-          setMinutes(minutes => {
+          setMinutes((minutes) => {
             if (minutes === 59) {
-              setHours(hours => hours + 1);
+              setHours((hours) => hours + 1);
             }
             return minutes + 1;
           });
@@ -23,24 +24,22 @@ const Timer = () => {
       });
     }, 1000);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
-  const pad = n => (n < 10 ? `0${n}` : n);
+  const pad = (n) => (n < 10 ? `0${n}` : n);
 
-  return (
-    <Text style={styles.calling}>{`${pad(hours)}:${pad(minutes)}:${pad(
-      seconds,
-    )}`}</Text>
-  );
+  return <Text style={styles.calling}>{`${pad(hours)}:${pad(minutes)}:${pad(seconds)}`}</Text>;
 };
 
 export default Timer;
 
 const styles = StyleSheet.create({
   calling: {
+    color: colors.black,
     fontSize: 20,
     fontWeight: '500',
-    color: '#4d4d4d',
   },
 });

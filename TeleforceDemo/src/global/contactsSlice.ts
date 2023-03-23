@@ -1,6 +1,6 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-import type {RootState} from './store';
+import type { RootState } from './store';
 
 export interface ContactState {
   contacts: any[];
@@ -21,7 +21,7 @@ export const contactsSlice = createSlice({
   },
 });
 
-export const {setContacts} = contactsSlice.actions;
+export const { setContacts } = contactsSlice.actions;
 
 export const selectContacts = (state: RootState) => state.contacts;
 

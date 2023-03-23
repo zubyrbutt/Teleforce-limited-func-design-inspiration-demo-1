@@ -1,7 +1,7 @@
-import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
-import {Animated} from 'react-native';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Animated } from 'react-native';
 
-import {Surface} from '@react-native-community/art';
+import { Surface } from '@react-native-community/art';
 
 import AnimatedCircle from './AnimatedCircle';
 
@@ -20,10 +20,10 @@ const CirclesLoader: React.FC<CirclesLoaderProps> = ({
   const timersRef = useRef<number[]>([]);
 
   const initOpacities = useMemo(() => {
-    return Array.from({length: 12}, () => new Animated.Value(1));
+    return Array.from({ length: 12 }, () => new Animated.Value(1));
   }, []);
 
-  const [opacities, setOpacities] = useState<Animated.Value[]>(initOpacities);
+  const [opacities] = useState<Animated.Value[]>(initOpacities);
 
   useEffect(() => {
     opacitiesRef.current = opacities;
@@ -58,7 +58,7 @@ const CirclesLoader: React.FC<CirclesLoaderProps> = ({
   useEffect(() => {
     startAnimation();
     return () => {
-      timersRef.current.forEach(id => {
+      timersRef.current.forEach((id) => {
         clearTimeout(id);
       });
     };
@@ -69,11 +69,9 @@ const CirclesLoader: React.FC<CirclesLoaderProps> = ({
   return (
     <Surface width={size + dotRadius} height={size + dotRadius}>
       {opacities.map((item, i) => {
-        let radian = (i * eachDegree * Math.PI) / 180;
-        let x =
-          Math.round((size / 2) * Math.cos(radian)) + size / 2 + dotRadius / 2;
-        let y =
-          Math.round((size / 2) * Math.sin(radian)) + size / 2 + dotRadius / 2;
+        const radian = (i * eachDegree * Math.PI) / 180;
+        const x = Math.round((size / 2) * Math.cos(radian)) + size / 2 + dotRadius / 2;
+        const y = Math.round((size / 2) * Math.sin(radian)) + size / 2 + dotRadius / 2;
         return (
           <AnimatedCircle
             key={i}

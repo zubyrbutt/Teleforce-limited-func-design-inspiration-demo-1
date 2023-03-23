@@ -1,9 +1,9 @@
-import { CallDialingIcon, CurveBar } from 'assets/icons/svg'
-import React from 'react'
-import { StyleSheet, useWindowDimensions, View } from 'react-native'
-import { SvgXml } from 'react-native-svg'
+import { CallDialingIcon, CurveBar } from 'assets/icons/svg';
+import React from 'react';
+import { StyleSheet, useWindowDimensions, View } from 'react-native';
+import { SvgXml } from 'react-native-svg';
 
-import CallingButton from '../CallingButton'
+import CallingButton from '../CallingButton';
 
 interface Props {
   isDisabled: boolean;
@@ -11,8 +11,8 @@ interface Props {
   backgroundColor: string;
 }
 
-const FooterBar = ({isDisabled, onPress, backgroundColor}: Props) => {
-  const {width} = useWindowDimensions();
+const FooterBar = ({ isDisabled, onPress, backgroundColor }: Props) => {
+  const { width } = useWindowDimensions();
   return (
     <View style={styles.container}>
       <SvgXml
@@ -38,13 +38,13 @@ const FooterBar = ({isDisabled, onPress, backgroundColor}: Props) => {
 export default FooterBar;
 
 const styles = StyleSheet.create({
-  container: {
-    position: 'absolute',
-    bottom: 0,
-  },
   button: {
     alignSelf: 'center',
-    position: 'absolute',
     bottom: 30,
+    position: 'absolute',
+  },
+  container: {
+    bottom: 0,
+    position: 'absolute',
   },
 });

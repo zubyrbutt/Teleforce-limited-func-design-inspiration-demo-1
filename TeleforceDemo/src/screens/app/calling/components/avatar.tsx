@@ -1,10 +1,10 @@
-import { AvatarIcon } from 'assets/icons/svg'
-import { MotiView } from 'moti'
-import React from 'react'
-import { StyleSheet, View } from 'react-native'
-import { Easing } from 'react-native-reanimated'
-import { SvgXml } from 'react-native-svg'
-import { colors } from 'theme'
+import { AvatarIcon } from 'assets/icons/svg';
+import { MotiView } from 'moti';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
+import { Easing } from 'react-native-reanimated';
+import { SvgXml } from 'react-native-svg';
+import { colors } from 'theme';
 
 interface MotiViewWrapperProps {
   index: number;
@@ -23,7 +23,7 @@ const Avatar = () => {
   );
 };
 
-const MotiViewWrapper = ({index}: MotiViewWrapperProps) => {
+const MotiViewWrapper = ({ index }: MotiViewWrapperProps) => {
   return (
     <MotiView
       from={{
@@ -51,15 +51,15 @@ const MotiViewWrapper = ({index}: MotiViewWrapperProps) => {
 export default Avatar;
 
 const styles = StyleSheet.create({
-  circle: {
-    width: 110,
-    height: 110,
-    borderRadius: 100,
-    backgroundColor: colors.info,
-  },
   center: {
-    justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
+    justifyContent: 'center',
+  },
+  circle: {
+    backgroundColor: colors.info,
+    borderRadius: 100,
+    height: 110,
+    width: 110,
   },
 });

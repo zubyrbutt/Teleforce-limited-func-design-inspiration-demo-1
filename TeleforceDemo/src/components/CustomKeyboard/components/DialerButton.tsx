@@ -1,6 +1,6 @@
-import React, { memo } from 'react'
-import { Pressable, StyleSheet, Text } from 'react-native'
-import { colors, fontSizes } from 'theme'
+import React, { memo } from 'react';
+import { Pressable, StyleSheet, Text } from 'react-native';
+import { colors, fontSizes } from 'theme';
 
 interface Props {
   number: string;
@@ -9,12 +9,9 @@ interface Props {
   onLongPress: () => void;
 }
 
-const DialerButton = memo(({number, letters, onPress, onLongPress}: Props) => {
+const DialerButton = memo(({ number, letters, onPress, onLongPress }: Props) => {
   return (
-    <Pressable
-      style={styles.dialerButton}
-      onPress={onPress}
-      onLongPress={onLongPress}>
+    <Pressable style={styles.dialerButton} onPress={onPress} onLongPress={onLongPress}>
       <Text style={styles.dialerButtonText}>{number}</Text>
       <Text style={styles.dialerButtonLetters}>{letters}</Text>
     </Pressable>
@@ -24,25 +21,25 @@ export default DialerButton;
 
 const styles = StyleSheet.create({
   dialerButton: {
+    alignItems: 'center',
+    backgroundColor: colors.white,
+    borderColor: colors.gray,
+    borderRadius: 5,
+    borderWidth: 1,
     flex: 1,
     height: '100%',
-    backgroundColor: colors.white,
-    borderRadius: 5,
-    margin: 5,
     justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: colors.gray,
-  },
-  dialerButtonText: {
-    fontSize: fontSizes.h5,
-    fontWeight: 'bold',
-    color: colors.black,
-    marginBottom: 1,
+    margin: 5,
   },
   dialerButtonLetters: {
-    fontSize: 12,
     color: colors.placeholder,
+    fontSize: 12,
     fontWeight: 'bold',
+  },
+  dialerButtonText: {
+    color: colors.black,
+    fontSize: fontSizes.h5,
+    fontWeight: 'bold',
+    marginBottom: 1,
   },
 });

@@ -1,50 +1,51 @@
-import { StyleSheet } from 'react-native'
-import { colors } from 'theme'
+import { StyleSheet } from 'react-native';
+import { colors } from 'theme';
 
 export const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#fafafa',
+  clearIcon: {
     alignItems: 'center',
+    borderRadius: 20,
+    bottom: 5,
+    height: 40,
     justifyContent: 'center',
-    position: 'absolute',
-    bottom: 0,
-    width: '100%',
-    height: '100%',
+    width: 40,
   },
 
+  container: {
+    alignItems: 'center',
+    backgroundColor: '#fafafa',
+    bottom: 0,
+    height: '100%',
+    justifyContent: 'center',
+    position: 'absolute',
+    width: '100%',
+  },
+  dialer: {
+    borderRadius: 5,
+    height: '50%',
+    padding: 10,
+    width: '100%',
+  },
   name: {
+    color: colors.black,
     fontSize: 30,
     fontWeight: '500',
-    color: colors.black,
   },
   phoneInputContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
     borderBottomColor: colors.gray,
     borderBottomWidth: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginBottom: 15,
   },
-  clearIcon: {
-    bottom: 5,
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   phoneNumberInput: {
-    width: '79%',
-    paddingVertical: 10,
-    marginBottom: 10,
+    color: colors.black,
     fontSize: 30,
     fontWeight: '500',
-    color: colors.black,
+    marginBottom: 10,
+    paddingVertical: 10,
+    width: '79%',
   },
-  dialer: {
-    width: '100%',
-    height: '50%',
-    borderRadius: 5,
-    padding: 10,
-  },
+  transparent: { backgroundColor: 'transparent', height: 40, width: 40 },
 });

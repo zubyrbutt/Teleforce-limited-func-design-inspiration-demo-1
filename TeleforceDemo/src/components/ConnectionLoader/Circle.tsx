@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {Path, Shape} from '@react-native-community/art';
+import { Path, Shape } from '@react-native-community/art';
 
 export default class Circle extends React.PureComponent {
   static propTypes = {
@@ -10,7 +10,7 @@ export default class Circle extends React.PureComponent {
   };
 
   render() {
-    const {radius} = this.props;
+    const { radius } = this.props;
 
     const path = Path()
       .moveTo(0, -radius / 2)
