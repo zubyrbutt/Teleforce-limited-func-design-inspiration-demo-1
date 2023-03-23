@@ -63,7 +63,7 @@ const ConnectingScreen = () => {
   return (
     <Wrapper style={styles.container}>
       <ConnectionLoader
-        size={width * 0.4}
+        size={width * 0.5}
         dotRadius={width * 0.08}
         color={colors.black}
         key={width}

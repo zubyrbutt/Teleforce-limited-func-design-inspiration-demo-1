@@ -3,6 +3,7 @@ import {StyleSheet, Text, View} from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
 
+import {CallingIcon} from '../../../assets/icons/svg';
 import {CallingButton, Wrapper} from '../../../components';
 import {Avatar} from './components';
 import CallingLoader from './components/callingLoader';
@@ -47,7 +48,7 @@ const CallingScreen: React.FC<Props> = ({route}) => {
           position: 'absolute',
           bottom: 40,
         }}>
-        <CallingButton onPress={handleCallingButton} />
+        <CallingButton icon={CallingIcon} onPress={handleCallingButton} />
       </View>
     </Wrapper>
   );

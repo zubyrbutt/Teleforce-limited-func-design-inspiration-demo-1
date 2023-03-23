@@ -36,7 +36,7 @@ const AppStack = createNativeStackNavigator<AppStackParamList>();
 function AppNav() {
   return (
     <AppStack.Navigator
-      initialRouteName="Connecting"
+      // initialRouteName="Connecting"
       screenOptions={{
         headerShown: false,
       }}>

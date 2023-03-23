@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, useWindowDimensions, View} from 'react-native';
 import {SvgXml} from 'react-native-svg';
 
-import {CurveBar} from '../../assets/icons/svg';
+import {CallDialingIcon, CurveBar} from '../../assets/icons/svg';
 import CallingButton from '../CallingButton';
 
 interface Props {
@@ -28,6 +28,7 @@ const FooterBar = ({isDisabled, onPress, backgroundColor}: Props) => {
           isDisabled={isDisabled}
           onPress={onPress}
           backgroundColor={backgroundColor}
+          icon={CallDialingIcon}
         />
       </View>
     </View>
