@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "204605160292",
+    "project_id": "teleforce-32378",
+    "storage_bucket": "teleforce-32378.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:204605160292:android:a2c2cdbb1b66b1c4da1871",
+        "android_client_info": {
+          "package_name": "com.teleforce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "204605160292-qqshe6j83fhh2lqv565ds4gaf7200vt1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCp3Mn2M6T5YFwBA8tKASJnZZ-8xjGNgOw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "204605160292-qqshe6j83fhh2lqv565ds4gaf7200vt1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

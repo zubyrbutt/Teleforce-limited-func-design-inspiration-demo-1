@@ -1,3 +1,4 @@
+import { useNotification } from 'hooks/useNotification';
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text } from 'react-native';
 import { colors, fontSizes } from 'theme';
@@ -7,7 +8,11 @@ const Timer = () => {
   const [minutes, setMinutes] = useState(0);
   const [hours, setHours] = useState(0);
 
+  const { displayNotification } = useNotification();
+
   useEffect(() => {
+    // when call connected
+    displayNotification('Call connected', 'Your call is connected. Enjoy!');
     const interval = setInterval(() => {
       // Increment seconds
       setSeconds((seconds) => {
@@ -23,7 +28,6 @@ const Timer = () => {
         return seconds + 1;
       });
     }, 1000);
-
     return () => {
       clearInterval(interval);
     };

@@ -1,26 +1,39 @@
-import notifee, { RepeatFrequency, TimestampTrigger, TriggerType } from '@notifee/react-native';
+import notifee, {
+  AndroidImportance,
+  AndroidVisibility,
+  RepeatFrequency,
+  TimestampTrigger,
+  TriggerType,
+} from '@notifee/react-native';
 
 export const useNotification = () => {
   async function displayNotification(title: string, body: string) {
     // Create a channel required for Android Notifications
     const channelId = await notifee.createChannel({
-      id: 'default',
+      id: 'custom-sound',
       name: 'Default Channel',
+      sound: 'notification',
+      importance: AndroidImportance.HIGH,
+      badge: true,
     });
-
     // Required for iOS
     // See https://notifee.app/react-native/docs/ios/permissions
     await notifee.requestPermission();
+    const androidConfig = {
+      channelId,
+      badgeCount: 1,
+      timestamp: Date.now() - 1000,
+      showTimestamp: true,
+      importance: AndroidImportance.HIGH,
+      visibility: AndroidVisibility.PUBLIC,
+    };
 
     // Display a notification
     const notificationId = notifee.displayNotification({
       // id: "string" | updates Notification instead if provided id already exists
       title: title,
       body: body,
-      android: {
-        channelId,
-        /* smallIcon: "smallIcon" | defaults to 'ic_launcher', respectively your app icon. */
-      },
+      android: androidConfig,
     });
     return notificationId;
   }
@@ -43,18 +56,6 @@ export const useNotification = () => {
       timestamp: timestamp, // fire at the provided date
       repeatFrequency: repeatFrequency, // repeat the notification on a hourly/daily/weekly basis
     };
-    // Please note, for iOS, a repeating trigger does not work the same as Android - the initial trigger cannot be delayed
-    // See https://notifee.app/react-native/docs/triggers
-
-    // You can also use Intervall triggers
-    /*
-    const trigger: IntervalTrigger = {
-      type: TriggerType.INTERVAL,
-      interval: 30
-      timeUnit: TimeUnit.MINUTES
-    };
-    */
-
     // Create a trigger notification
     const triggerNotificationId = await notifee.createTriggerNotification(
       {
@@ -90,9 +91,6 @@ export const useNotification = () => {
   async function cancelNotification(notificationId: string, tag: string | undefined = undefined) {
     await notifee.cancelNotification(notificationId, tag);
   }
-
-  // There are way more methods I didn't cover here that can help you in various scenarios
-  // See https://notifee.app/react-native/reference
 
   return {
     displayNotification,

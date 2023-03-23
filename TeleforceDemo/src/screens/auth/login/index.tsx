@@ -2,8 +2,9 @@ import { LockIcon, UserIcon } from 'assets/icons/svg';
 import { Formik } from 'formik';
 import { useAppDispatch } from 'global/hooks';
 import { login } from 'global/userSlice';
+import { useNotification } from 'hooks/useNotification';
 import React from 'react';
-import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { KeyboardAvoidingScrollView } from 'react-native-keyboard-avoiding-scroll-view';
 import { colors, fontSizes } from 'theme';
 import { loginValidationSchema } from 'utils/validationSchema';
@@ -20,6 +21,7 @@ const CREDENTIALS = {
 
 const LoginScreen = () => {
   const dispatch = useAppDispatch();
+  const { displayNotification } = useNotification();
 
   const handleLogin = (values: { username: string; password: string }) => {
     const { username, password } = values;
@@ -27,7 +29,11 @@ const LoginScreen = () => {
     if (username === CREDENTIALS.username && password === CREDENTIALS.password) {
       dispatch(login({ username, password, isLoggedIn: true }));
     } else {
-      Alert.alert('', 'Invalid username or password');
+      // Alert.alert('', 'Invalid username or password');
+      displayNotification(
+        'Invalid credentials',
+        'Please check your username and password. and try again',
+      );
     }
   };
 

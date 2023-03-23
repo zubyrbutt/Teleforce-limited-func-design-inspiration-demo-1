@@ -14,9 +14,12 @@
     "@notifee/react-native": "^7.6.1",
     "@react-native-community/art": "^1.2.0",
     "@react-native-community/netinfo": "^9.3.7",
+    "@react-native-firebase/app": "^17.3.2",
+    "@react-native-firebase/messaging": "^17.3.2",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
     "@reduxjs/toolkit": "^1.9.3",
+    "add": "^2.0.6",
     "formik": "^2.2.9",
     "moti": "^0.24.2",
     "react": "18.2.0",
@@ -30,6 +33,7 @@
     "react-native-screens": "^3.20.0",
     "react-native-svg": "^13.8.0",
     "react-redux": "^8.0.5",
+    "yarn": "^1.22.19",
     "yup": "^1.0.2"
   },
   "devDependencies": {
