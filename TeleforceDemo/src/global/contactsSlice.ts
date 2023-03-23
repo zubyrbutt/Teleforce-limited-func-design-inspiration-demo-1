@@ -1,4 +1,4 @@
-import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction, type } from '@reduxjs/toolkit';
 
 import type { RootState } from './store';
 
@@ -15,7 +15,6 @@ export const contactsSlice = createSlice({
   initialState,
   reducers: {
     setContacts: (state, action: PayloadAction<ContactState>) => {
-      console.log('action.payload.contacts', action.payload);
       state.contacts = action.payload.contacts;
     },
   },

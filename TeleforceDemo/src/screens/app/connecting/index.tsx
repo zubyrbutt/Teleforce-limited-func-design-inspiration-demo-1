@@ -4,7 +4,7 @@ import { setContacts } from 'global/contactsSlice';
 import { useAppDispatch, useAppSelector } from 'global/hooks';
 import React, { useEffect } from 'react';
 import { StyleSheet, Text, useWindowDimensions } from 'react-native';
-import Contacts, { type Contact } from 'react-native-contacts';
+import Contacts, { Contact } from 'react-native-contacts';
 import { colors, fontSizes } from 'theme';
 import { requestContactsPermission } from 'utils/helpers';
 
@@ -27,7 +27,6 @@ const ConnectingScreen = () => {
       const granted = await requestContactsPermission();
       if (granted) {
         const fetchedContacts = await Contacts.getAll();
-        console.log('fetchedContacts', fetchedContacts);
         fetchedContacts.sort((a: Contact, b: Contact) => a.givenName.localeCompare(b.givenName));
         dispatch(setContacts({ contacts: fetchedContacts }));
         navigation.navigate('Dialing');

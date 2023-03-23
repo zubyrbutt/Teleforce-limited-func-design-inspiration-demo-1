@@ -23,10 +23,8 @@ const LoginScreen = () => {
 
   const handleLogin = (values: { username: string; password: string }) => {
     const { username, password } = values;
-    console.log('values', values);
 
     if (username === CREDENTIALS.username && password === CREDENTIALS.password) {
-      // navigation.navigate('Home');
       dispatch(login({ username, password, isLoggedIn: true }));
     } else {
       Alert.alert('', 'Invalid username or password');
