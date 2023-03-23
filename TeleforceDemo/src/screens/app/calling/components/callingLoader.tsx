@@ -1,7 +1,9 @@
+import { useAppSelector } from 'global/hooks';
 import { useNotification } from 'hooks/useNotification';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { colors, fontSizes } from 'theme';
+import { onSendNotification } from 'utils/_firebase';
 
 interface Props {}
 
@@ -9,10 +11,14 @@ const CallingLoader: React.FC<Props> = () => {
   const [dots, setDots] = useState<string>('.');
   const [seconds, setSeconds] = useState<number>(0);
 
+  const deviceToken = useAppSelector((state) => state.user.token);
+
   const { displayNotification } = useNotification();
 
   useEffect(() => {
-    displayNotification('Calling', 'Your call is connecting. Please wait...');
+    // displayNotification is a local notification function
+    // displayNotification('Calling', 'Your call is connecting. Please wait...');
+    sendNotification();
     const timer = setTimeout(() => {
       setSeconds((prevSeconds) => prevSeconds + 1);
     }, 1000);
@@ -20,6 +26,18 @@ const CallingLoader: React.FC<Props> = () => {
       clearTimeout(timer);
     };
   }, []);
+
+  const sendNotification = async () => {
+    onSendNotification({
+      to: deviceToken.token,
+      notification: {
+        title: 'Calling',
+        body: 'Your call is connecting. Please wait...',
+        sound: 'default',
+        priority: 'high',
+      },
+    });
+  };
 
   useEffect(() => {
     if (seconds % 3 === 0) {

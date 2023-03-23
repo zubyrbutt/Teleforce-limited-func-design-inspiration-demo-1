@@ -1,49 +1,85 @@
-import { Alert } from 'react-native';
+import messaging from '@react-native-firebase/messaging';
 
-import messaging, { FirebaseMessagingTypes } from '@react-native-firebase/messaging';
+import { useNotification } from '../hooks/useNotification';
+import { getData, storeData } from './_storage';
 
-// Register the device for FCM (Firebase Cloud Messaging) messages
-async function registerAppWithFCM(): Promise<void> {
-  await messaging().registerDeviceForRemoteMessages();
-}
+const SERVER_KEY =
+  'AAAAL6Nq-2Q:APA91bErt2bcHdPjt99j4AobR3LVHkdeHMjCfnZ7a5-B4BWshzr7OUEMGsnuyALwFH_npVieqN7mcwVEVVbw9eeYef96zsKSaIz8UfxfoQ4IBsX880hDwxEDDj8y7l1b8MjMI1O7VIam';
 
-// Request permission to receive notifications
-async function requestUserPermission(): Promise<void> {
-  const authStatus: FirebaseMessagingTypes.AuthorizationStatus =
-    await messaging().requestPermission();
+export const requestUserPermission = async () => {
+  const authStatus = await messaging().requestPermission();
   const enabled =
-    authStatus === FirebaseMessagingTypes.AuthorizationStatus.AUTHORIZED ||
-    authStatus === FirebaseMessagingTypes.AuthorizationStatus.PROVISIONAL;
-
+    authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+    authStatus === messaging.AuthorizationStatus.PROVISIONAL;
   if (enabled) {
-    console.log('Authorization status:', authStatus);
+    // Do something here
   }
-}
+};
 
-// Get the FCM token for the device
-async function getFCMToken(): Promise<void> {
-  const token: string | undefined = await messaging().getToken();
-  console.log('FCM token:', token);
-}
+export const getFCMToken = async () => {
+  let fcmToken = await getData('fcmToken');
+  if (!fcmToken) {
+    const token = await messaging().getToken();
+    if (token) {
+      fcmToken = token;
+      await storeData('fcmToken', token);
+    }
+  }
+  return fcmToken;
+};
 
-// Listen for incoming background messages
-messaging().setBackgroundMessageHandler(
-  async (remoteMessage: FirebaseMessagingTypes.RemoteMessage) => {
-    console.log('Received background message:', remoteMessage);
-  },
-);
+export const onNotificationOpenedFromBackground = async (remoteMessage: any) => {
+  console.log(
+    'Notification caused app to open from background state:',
+    remoteMessage?.notification,
+  );
+  // Alert.alert("background", JSON.stringify(remoteMessage.notification));
+};
 
-// Listen for incoming foreground messages
-messaging().onMessage(async (remoteMessage: FirebaseMessagingTypes.RemoteMessage) => {
-  Alert.alert('A new notification has arrived!', remoteMessage.notification?.body ?? '');
-});
+export const onNotificationOpenedFromQuitState = async (remoteMessage: any) => {
+  console.log('Notification caused app to open from quit state:', remoteMessage?.notification);
+  // Alert.alert("quit state", JSON.stringify(remoteMessage.notification));
+};
 
-// Listen for token refreshes
-messaging().onTokenRefresh(async (token: string | undefined) => {
-  console.log('FCM token refreshed:', token);
-});
+export const displayNewFCMMessage = async (remoteMessage: any) => {
+  console.log('A new FCM message arrived!', JSON.stringify(remoteMessage));
+  const { notification } = remoteMessage;
+  useNotification().displayNotification(notification?.title!, notification?.body!);
+};
 
-// Register the app with FCM, request permission, and get the FCM token
-registerAppWithFCM();
-requestUserPermission();
-getFCMToken();
+export const notificationListener = async () => {
+  const enabled = await messaging().hasPermission();
+  if (enabled) {
+    getFCMToken();
+  } else {
+    requestUserPermission();
+  }
+
+  messaging().onNotificationOpenedApp(onNotificationOpenedFromBackground);
+
+  messaging().getInitialNotification().then(onNotificationOpenedFromQuitState);
+
+  messaging().onMessage(displayNewFCMMessage);
+};
+
+export const onSendNotification = async (message: any) => {
+  const headers = {
+    Accept: 'application/json',
+    'Accept-encoding': 'gzip, deflate',
+    'Content-Type': 'application/json',
+    Authorization: `key=${SERVER_KEY}`, // Replace with your server key
+  };
+
+  try {
+    const response = await fetch('https://fcm.googleapis.com/fcm/send', {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(message),
+    });
+
+    const data = await response.json();
+    console.log('onSendNotification data', data);
+  } catch (error) {
+    console.error('Error sending notification:', error);
+  }
+};
