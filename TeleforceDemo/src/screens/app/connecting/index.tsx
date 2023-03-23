@@ -1,16 +1,19 @@
 import React, {useEffect} from 'react';
-import {ActivityIndicator, Alert, StyleSheet, Text} from 'react-native';
+import {Alert, StyleSheet, Text, useWindowDimensions} from 'react-native';
 import Contacts, {Contact} from 'react-native-contacts';
 
 import {useNavigation} from '@react-navigation/native';
 
 import {Wrapper} from '../../../components';
+import ConnectionLoader from '../../../components/ConnectionLoader';
 import {setContacts} from '../../../global/contactsSlice';
 import {useAppDispatch, useAppSelector} from '../../../global/hooks';
+import {colors, fontSizes} from '../../../theme/theme';
 import {openSettings, requestContactsPermission} from '../../../utils/helpers';
 
 const ConnectingScreen = () => {
   const navigation = useNavigation<any>();
+  const {width} = useWindowDimensions();
 
   const dispatch = useAppDispatch();
   const {isOnline} = useAppSelector(state => state.connection);
@@ -59,10 +62,21 @@ const ConnectingScreen = () => {
 
   return (
     <Wrapper style={styles.container}>
-      <ActivityIndicator size="large" />
+      <ConnectionLoader
+        size={width * 0.4}
+        dotRadius={width * 0.08}
+        color={colors.black}
+        key={width}
+      />
       <Text
         style={{
-          color: 'red',
+          textAlign: 'center',
+          position: 'absolute',
+          left: 0,
+          right: 0,
+          color: colors.cancel,
+          fontSize: fontSizes.subtitle1,
+          fontWeight: '500',
         }}>
         {isOnline ? 'connecting' : 'lost connection'}
       </Text>
