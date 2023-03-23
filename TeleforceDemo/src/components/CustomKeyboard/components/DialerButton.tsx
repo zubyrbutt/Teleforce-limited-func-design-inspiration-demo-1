@@ -1,7 +1,6 @@
-import React, {memo} from 'react';
-import {Pressable, StyleSheet, Text} from 'react-native';
-
-import {colors, fontSizes} from '../../../theme/theme';
+import React, { memo } from 'react'
+import { Pressable, StyleSheet, Text } from 'react-native'
+import { colors, fontSizes } from 'theme'
 
 interface Props {
   number: string;

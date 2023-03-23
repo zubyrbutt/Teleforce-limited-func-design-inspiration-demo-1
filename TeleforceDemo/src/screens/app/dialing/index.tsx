@@ -1,10 +1,9 @@
+import CustomKeyboard from 'components/CustomKeyboard'
+import { useAppSelector } from 'global/hooks'
 import React, { useEffect, useState } from 'react'
 import { Alert, BackHandler } from 'react-native'
 
 import { useNavigation } from '@react-navigation/native'
-
-import CustomKeyboard from '../../../components/CustomKeyboard'
-import { useAppSelector } from '../../../global/hooks'
 
 const formattedPhoneNumber = (phoneNumber: string) =>
   phoneNumber.replace(/[^\d]/g, '');

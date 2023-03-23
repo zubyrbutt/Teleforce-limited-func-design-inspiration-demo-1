@@ -4,8 +4,18 @@ module.exports = {
     [
       "module-resolver",
       {
+        root: ['./src'],
+        extensions: ['.ios.js', '.android.js', '.js', '.ts', '.tsx', '.json'],
         alias: {
-          "@authNav": "./src/navigation/authNav.tsx"
+          "@appAuth": "./src/navigation/authNav",
+          "@appNav": "./src/navigation/appNav",
+          '@components': './src/components/index',
+          '@screens': './src/screens/*',
+          '@assets': './src/assets/*',
+          '@theme': './src/theme/index',
+          "@global": './src/global/*',
+          "@utils": './src/utils/*',
+          // '@hooks': './src/hooks/index',
         },
       },
     ],

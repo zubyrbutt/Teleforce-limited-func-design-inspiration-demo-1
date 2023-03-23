@@ -1,9 +1,9 @@
-import React from 'react';
-import {StyleSheet, useWindowDimensions, View} from 'react-native';
-import {SvgXml} from 'react-native-svg';
+import { CallDialingIcon, CurveBar } from 'assets/icons/svg'
+import React from 'react'
+import { StyleSheet, useWindowDimensions, View } from 'react-native'
+import { SvgXml } from 'react-native-svg'
 
-import {CallDialingIcon, CurveBar} from '../../assets/icons/svg';
-import CallingButton from '../CallingButton';
+import CallingButton from '../CallingButton'
 
 interface Props {
   isDisabled: boolean;

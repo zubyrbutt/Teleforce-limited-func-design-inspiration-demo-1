@@ -1,8 +1,7 @@
-import React from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
-
-import {colors, fontSizes} from '../../theme/theme';
+import React from 'react'
+import { StyleSheet, Text, TouchableOpacity } from 'react-native'
+import LinearGradient from 'react-native-linear-gradient'
+import { colors, fontSizes } from 'theme'
 
 interface AuthButtonProps {
   onPress: () => void;

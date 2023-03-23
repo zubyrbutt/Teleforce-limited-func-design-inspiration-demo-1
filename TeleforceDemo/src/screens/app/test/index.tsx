@@ -1,9 +1,8 @@
-import React from 'react';
-import {StyleSheet, Text, useWindowDimensions, View} from 'react-native';
-
-import {Wrapper} from '../../../components';
-import ConnectionLoader from '../../../components/ConnectionLoader';
-import {colors, fontSizes} from '../../../theme/theme';
+import { Wrapper } from 'components'
+import ConnectionLoader from 'components/ConnectionLoader'
+import React from 'react'
+import { StyleSheet, Text, useWindowDimensions, View } from 'react-native'
+import { colors, fontSizes } from 'theme'
 
 const TestScreen = () => {
   const {width} = useWindowDimensions();

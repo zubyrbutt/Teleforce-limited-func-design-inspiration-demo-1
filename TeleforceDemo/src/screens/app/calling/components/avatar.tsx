@@ -1,11 +1,10 @@
-import {MotiView} from 'moti';
-import React from 'react';
-import {StyleSheet, View} from 'react-native';
-import {Easing} from 'react-native-reanimated';
-import {SvgXml} from 'react-native-svg';
-
-import {AvatarIcon} from '../../../../assets/icons/svg';
-import {colors} from '../../../../theme/theme';
+import { AvatarIcon } from 'assets/icons/svg'
+import { MotiView } from 'moti'
+import React from 'react'
+import { StyleSheet, View } from 'react-native'
+import { Easing } from 'react-native-reanimated'
+import { SvgXml } from 'react-native-svg'
+import { colors } from 'theme'
 
 interface MotiViewWrapperProps {
   index: number;

@@ -1,15 +1,14 @@
+import { Wrapper } from 'components'
+import ConnectionLoader from 'components/ConnectionLoader'
+import { setContacts } from 'global/contactsSlice'
+import { useAppDispatch, useAppSelector } from 'global/hooks'
 import React, { useEffect } from 'react'
 import { StyleSheet, Text, useWindowDimensions } from 'react-native'
 import Contacts, { Contact } from 'react-native-contacts'
+import { colors, fontSizes } from 'theme'
+import { requestContactsPermission } from 'utils/helpers'
 
 import { useNavigation } from '@react-navigation/native'
-
-import { Wrapper } from '../../../components'
-import ConnectionLoader from '../../../components/ConnectionLoader'
-import { setContacts } from '../../../global/contactsSlice'
-import { useAppDispatch, useAppSelector } from '../../../global/hooks'
-import { colors, fontSizes } from '../../../theme/theme'
-import { requestContactsPermission } from '../../../utils/helpers'
 
 const ConnectingScreen = () => {
   const navigation = useNavigation<any>();

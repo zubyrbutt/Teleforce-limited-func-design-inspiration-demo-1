@@ -5,7 +5,15 @@
     // Path alias config
     "baseUrl": ".",
     "paths": {
-      "@authNav": ["src/navigation/authNav.tsx"]
+      "*": ["src/*"],
+      "@appNav": ["src/navigation/appNav.tsx"],
+      "@appAuth": ["src/navigation/authNav.tsx"],
+      "@components": ["src/components/index"],
+      "@screens": ["src/screens/*"],
+      "@assets": ["src/assets/*"],
+      "@theme": ["src/theme/index"],
+      "@global": ["src/global/*"],
+      "@utils": ["src/utils/*"]
     }
   }
 }

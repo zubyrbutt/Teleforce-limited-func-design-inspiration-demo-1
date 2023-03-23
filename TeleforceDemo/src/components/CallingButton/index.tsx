@@ -1,8 +1,7 @@
-import React from 'react';
-import {StyleSheet, TouchableOpacity} from 'react-native';
-import {SvgXml} from 'react-native-svg';
-
-import {colors} from '../../theme/theme';
+import React from 'react'
+import { StyleSheet, TouchableOpacity } from 'react-native'
+import { SvgXml } from 'react-native-svg'
+import { colors } from 'theme'
 
 interface Props {
   isDisabled?: boolean;

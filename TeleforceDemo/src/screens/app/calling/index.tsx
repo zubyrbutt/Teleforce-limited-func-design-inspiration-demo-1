@@ -1,13 +1,13 @@
-import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import { CallingIcon } from 'assets/icons/svg'
+import { CallingButton, Wrapper } from 'components'
+import React, { useEffect, useState } from 'react'
+import { StyleSheet, Text, View } from 'react-native'
 
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native'
 
-import {CallingIcon} from '../../../assets/icons/svg';
-import {CallingButton, Wrapper} from '../../../components';
-import {Avatar} from './components';
-import CallingLoader from './components/callingLoader';
-import Timer from './components/timer';
+import { Avatar } from './components'
+import CallingLoader from './components/callingLoader'
+import Timer from './components/timer'
 
 interface Props {
   route: {

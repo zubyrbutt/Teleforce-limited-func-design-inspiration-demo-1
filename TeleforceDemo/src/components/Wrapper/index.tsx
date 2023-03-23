@@ -1,8 +1,7 @@
-import React from 'react';
-import {SafeAreaView, StyleSheet} from 'react-native';
-import {SafeAreaViewProps} from 'react-native-safe-area-context';
-
-import {colors} from '../../theme/theme';
+import React from 'react'
+import { SafeAreaView, StyleSheet } from 'react-native'
+import { SafeAreaViewProps } from 'react-native-safe-area-context'
+import { colors } from 'theme'
 
 const Wrapper = (props: SafeAreaViewProps) => {
   const {children, style} = props;

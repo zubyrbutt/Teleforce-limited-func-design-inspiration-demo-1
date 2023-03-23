@@ -1,8 +1,7 @@
-import React, {Fragment, memo} from 'react';
-import {StyleSheet, Text, TextInput, View} from 'react-native';
-import {SvgXml} from 'react-native-svg';
-
-import {colors, fontSizes} from '../../theme/theme';
+import React, { Fragment, memo } from 'react'
+import { StyleSheet, Text, TextInput, View } from 'react-native'
+import { SvgXml } from 'react-native-svg'
+import { colors, fontSizes } from 'theme'
 
 type AuthInputProps = {
   label: string;

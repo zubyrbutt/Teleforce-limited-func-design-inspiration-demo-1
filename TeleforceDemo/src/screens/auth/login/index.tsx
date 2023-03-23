@@ -1,18 +1,18 @@
+import { LockIcon, UserIcon } from 'assets/icons/svg'
 import { Formik } from 'formik'
+import { useAppDispatch } from 'global/hooks'
+import { login } from 'global/userSlice'
 import React from 'react'
 import {
     Alert, Image, KeyboardAvoidingView, Platform, StyleSheet, Text, TouchableOpacity, View
 } from 'react-native'
+import { colors, fontSizes } from 'theme'
+import { setItem } from 'utils/storage'
+import { loginValidationSchema } from 'utils/validationSchema'
 
-import { LockIcon, UserIcon } from '../../../assets/icons/svg'
-import { AuthButton, AuthInput } from '../../../components'
-import { useAppDispatch } from '../../../global/hooks'
-import { login } from '../../../global/userSlice'
-import { colors, fontSizes } from '../../../theme/theme'
-import { setItem } from '../../../utils/storage'
-import { loginValidationSchema } from '../../../utils/validationSchema'
+import { AuthButton, AuthInput } from '@components'
 
-const LOGO = require('../../../assets/icons/Teo_logo.png');
+const LOGO = require('assets/icons/Teo_logo.png');
 const LOGO_SIZE = 100;
 
 const CREDENTIALS = {

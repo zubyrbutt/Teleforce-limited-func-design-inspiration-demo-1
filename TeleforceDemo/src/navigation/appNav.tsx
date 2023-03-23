@@ -1,9 +1,10 @@
 // In App.js in a new project
 
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { CallingScreen, ConnectingScreen, DialingScreen } from 'screens/app'
 
-import {CallingScreen, ConnectingScreen, DialingScreen} from '../screens/app';
-import TestScreen from '../screens/app/test';
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+
+import TestScreen from '../screens/app/test'
 
 type AppStackParamList = {
   Connecting: undefined;

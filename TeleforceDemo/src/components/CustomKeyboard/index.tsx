@@ -1,16 +1,15 @@
-import React, {useCallback} from 'react';
-import {Keyboard, Text, TextInput, TouchableOpacity, View} from 'react-native';
-import {SvgXml} from 'react-native-svg';
+import { ClearIcon } from 'assets/icons/svg'
+import React, { useCallback } from 'react'
+import { Keyboard, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { SvgXml } from 'react-native-svg'
+import { colors } from 'theme'
 
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native'
 
-import {ClearIcon} from '../../assets/icons/svg';
-import {colors} from '../../theme/theme';
-import CallingButton from '../CallingButton';
-import FooterBar from '../CurveBar';
-import DialerRow from './components/DialerRow';
-import {dialerRows} from './dialerData';
-import {styles} from './styles';
+import FooterBar from '../CurveBar'
+import DialerRow from './components/DialerRow'
+import { dialerRows } from './dialerData'
+import { styles } from './styles'
 
 interface Props {
   data: any;

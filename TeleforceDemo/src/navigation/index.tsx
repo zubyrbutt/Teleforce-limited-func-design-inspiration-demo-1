@@ -1,13 +1,13 @@
-import React from 'react';
+import { setOnline } from 'global/connectionSlice'
+import { useAppDispatch, useAppSelector } from 'global/hooks'
+import React from 'react'
 
-import AuthNav from '@authNav';
-import NetInfo from '@react-native-community/netinfo';
-import {NavigationContainer} from '@react-navigation/native';
+import NetInfo from '@react-native-community/netinfo'
+import { NavigationContainer } from '@react-navigation/native'
 
-import {setOnline} from '../global/connectionSlice';
-import {useAppDispatch, useAppSelector} from '../global/hooks';
-import AppNav from './appNav';
-import NetWorkNav from './netWorkNav';
+import AppNav from './appNav'
+import AuthNav from './authNav'
+import NetWorkNav from './netWorkNav'
 
 function RootNav() {
   const {isLoggedIn} = useAppSelector(state => state.user);
