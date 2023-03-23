@@ -1,22 +1,16 @@
-import {Formik} from 'formik';
-import React from 'react';
+import { Formik } from 'formik'
+import React from 'react'
 import {
-  Alert,
-  Image,
-  Platform,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+    Alert, Image, KeyboardAvoidingView, Platform, StyleSheet, Text, TouchableOpacity, View
+} from 'react-native'
 
-import {LockIcon, UserIcon} from '../../../assets/icons/svg';
-import {AuthButton, AuthInput, Wrapper} from '../../../components';
-import {useAppDispatch} from '../../../global/hooks';
-import {login} from '../../../global/userSlice';
-import {colors, fontSizes} from '../../../theme/theme';
-import {setItem} from '../../../utils/storage';
-import {loginValidationSchema} from '../../../utils/validationSchema';
+import { LockIcon, UserIcon } from '../../../assets/icons/svg'
+import { AuthButton, AuthInput } from '../../../components'
+import { useAppDispatch } from '../../../global/hooks'
+import { login } from '../../../global/userSlice'
+import { colors, fontSizes } from '../../../theme/theme'
+import { setItem } from '../../../utils/storage'
+import { loginValidationSchema } from '../../../utils/validationSchema'
 
 const LOGO = require('../../../assets/icons/Teo_logo.png');
 const LOGO_SIZE = 100;
@@ -46,10 +40,9 @@ const LoginScreen = () => {
   };
 
   return (
-    <Wrapper
-      style={{
-        padding: Platform.OS === 'android' ? 0 : 40,
-      }}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={styles.container}>
       <View style={styles.logo}>
         <Image
           source={LOGO}
@@ -108,13 +101,20 @@ const LoginScreen = () => {
           </>
         )}
       </Formik>
-    </Wrapper>
+      {/* </Wrapper> */}
+    </KeyboardAvoidingView>
   );
 };
 
 export default LoginScreen;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.background,
+    alignItems: 'center',
+    padding: Platform.OS === 'android' ? 0 : 40,
+  },
   logo: {
     marginTop: 30,
     marginBottom: 70,
