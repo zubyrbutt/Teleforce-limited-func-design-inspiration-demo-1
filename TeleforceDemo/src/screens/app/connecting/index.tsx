@@ -1,15 +1,15 @@
-import React, {useEffect} from 'react';
-import {Alert, StyleSheet, Text, useWindowDimensions} from 'react-native';
-import Contacts, {Contact} from 'react-native-contacts';
+import React, { useEffect } from 'react'
+import { StyleSheet, Text, useWindowDimensions } from 'react-native'
+import Contacts, { Contact } from 'react-native-contacts'
 
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native'
 
-import {Wrapper} from '../../../components';
-import ConnectionLoader from '../../../components/ConnectionLoader';
-import {setContacts} from '../../../global/contactsSlice';
-import {useAppDispatch, useAppSelector} from '../../../global/hooks';
-import {colors, fontSizes} from '../../../theme/theme';
-import {openSettings, requestContactsPermission} from '../../../utils/helpers';
+import { Wrapper } from '../../../components'
+import ConnectionLoader from '../../../components/ConnectionLoader'
+import { setContacts } from '../../../global/contactsSlice'
+import { useAppDispatch, useAppSelector } from '../../../global/hooks'
+import { colors, fontSizes } from '../../../theme/theme'
+import { requestContactsPermission } from '../../../utils/helpers'
 
 const ConnectingScreen = () => {
   const navigation = useNavigation<any>();
@@ -19,44 +19,26 @@ const ConnectingScreen = () => {
   const {isOnline} = useAppSelector(state => state.connection);
 
   useEffect(() => {
-    handleGetContacts();
+    loadContacts();
   }, []);
-
-  const handleGetContacts = () => {
-    requestContactsPermission()
-      .then(() => {
-        loadContacts();
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
 
   // open permission settings
   const loadContacts = async () => {
     try {
-      const fetchedContacts = await Contacts.getAll();
-      console.log('fetchedContacts', fetchedContacts);
-      fetchedContacts.sort((a: Contact, b: Contact) =>
-        a.givenName.localeCompare(b.givenName),
-      );
-      dispatch(setContacts({contacts: fetchedContacts}));
-      navigation.navigate('Dialing');
-    } catch (e: any) {
-      if (e.message === 'denied') {
-        Alert.alert(
-          'Permission Denied!',
-          'You need to give access to your contacts.',
-          [
-            {
-              text: 'Cancel',
-              onPress: () => navigation.navigate('Dialing'),
-              style: 'cancel',
-            },
-            {text: 'OK', onPress: () => openSettings()},
-          ],
+      const granted = await requestContactsPermission();
+      if (granted) {
+        const fetchedContacts = await Contacts.getAll();
+        console.log('fetchedContacts', fetchedContacts);
+        fetchedContacts.sort((a: Contact, b: Contact) =>
+          a.givenName.localeCompare(b.givenName),
         );
+        dispatch(setContacts({contacts: fetchedContacts}));
+        navigation.navigate('Dialing');
+      } else {
+        navigation.navigate('Dialing');
       }
+    } catch (e: any) {
+      console.log(e);
     }
   };
 

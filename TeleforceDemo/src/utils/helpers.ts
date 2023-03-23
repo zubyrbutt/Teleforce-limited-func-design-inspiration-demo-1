@@ -1,7 +1,7 @@
-import {Alert, Linking, PermissionsAndroid, Platform} from 'react-native';
-import Contacts from 'react-native-contacts';
+import { Linking, PermissionsAndroid, Platform } from 'react-native'
+import Contacts from 'react-native-contacts'
 
-import NetInfo from '@react-native-community/netinfo';
+import NetInfo from '@react-native-community/netinfo'
 
 export const requestContactsPermission = async () => {
   try {
@@ -22,10 +22,6 @@ export const requestContactsPermission = async () => {
     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
       return true;
     }
-    Alert.alert(
-      'Permission denied',
-      'You have denied permission to access contacts.',
-    );
     return false;
   } catch (err) {
     console.warn(err);
