@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text } from 'react-native';
-import { colors } from 'theme';
+import { colors, fontSizes } from 'theme';
 
 const Timer = () => {
   const [seconds, setSeconds] = useState(0);
@@ -39,7 +39,7 @@ export default Timer;
 const styles = StyleSheet.create({
   calling: {
     color: colors.black,
-    fontSize: 20,
+    fontSize: fontSizes.h6,
     fontWeight: '500',
   },
 });

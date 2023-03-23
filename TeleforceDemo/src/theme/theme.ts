@@ -14,6 +14,7 @@ export const colors = {
   green: '#4CAF50',
   cancel: '#E64530',
   gray: '#CCCCCC',
+  border: '#e6e6e6',
 };
 
 // fonts theme
@@ -27,7 +28,7 @@ export const fontSizes = {
   h1: 96,
   h2: 60,
   h3: 48,
-  h4: 34,
+  h4: 30,
   h5: 24,
   h6: 20,
   subtitle1: 16,

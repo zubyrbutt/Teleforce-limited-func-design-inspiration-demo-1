@@ -1,14 +1,14 @@
 import { CallingIcon } from 'assets/icons/svg';
 import { CallingButton, Wrapper } from 'components';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { colors } from 'theme';
+import { Text, View } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 
 import { Avatar } from './components';
 import CallingLoader from './components/callingLoader';
 import Timer from './components/timer';
+import { styles } from './styles';
 
 interface Props {
   route: {
@@ -52,31 +52,5 @@ const CallingScreen: React.FC<Props> = ({ route }) => {
     </Wrapper>
   );
 };
-
-const styles = StyleSheet.create({
-  detailsContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 50,
-  },
-  iconContainer: {
-    bottom: 40,
-    position: 'absolute',
-  },
-  name: {
-    color: colors.text,
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  phone: {
-    color: colors.text,
-    fontSize: 32,
-    fontWeight: '500',
-    marginVertical: 20,
-  },
-  spacer: {
-    marginTop: 30,
-  },
-});
 
 export default CallingScreen;

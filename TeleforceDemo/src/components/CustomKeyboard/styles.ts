@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors } from 'theme';
+import { colors, fontSizes } from 'theme';
 
 export const styles = StyleSheet.create({
   clearIcon: {
@@ -28,12 +28,12 @@ export const styles = StyleSheet.create({
   },
   name: {
     color: colors.black,
-    fontSize: 30,
+    fontSize: fontSizes.h4,
     fontWeight: '500',
   },
   phoneInputContainer: {
     alignItems: 'center',
-    borderBottomColor: colors.gray,
+    borderBottomColor: colors.border,
     borderBottomWidth: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -41,7 +41,7 @@ export const styles = StyleSheet.create({
   },
   phoneNumberInput: {
     color: colors.black,
-    fontSize: 30,
+    fontSize: fontSizes.h4,
     fontWeight: '500',
     marginBottom: 10,
     paddingVertical: 10,

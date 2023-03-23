@@ -3,16 +3,8 @@ import { Formik } from 'formik';
 import { useAppDispatch } from 'global/hooks';
 import { login } from 'global/userSlice';
 import React from 'react';
-import {
-  Alert,
-  Image,
-  KeyboardAvoidingView,
-  Platform,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { KeyboardAvoidingScrollView } from 'react-native-keyboard-avoiding-scroll-view';
 import { colors, fontSizes } from 'theme';
 import { loginValidationSchema } from 'utils/validationSchema';
 
@@ -42,9 +34,10 @@ const LoginScreen = () => {
   };
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={styles.container}
+    <KeyboardAvoidingScrollView
+      contentContainerStyle={{
+        alignItems: 'center',
+      }}
     >
       <View style={styles.logo}>
         <Image
@@ -98,8 +91,7 @@ const LoginScreen = () => {
           </>
         )}
       </Formik>
-      {/* </Wrapper> */}
-    </KeyboardAvoidingView>
+    </KeyboardAvoidingScrollView>
   );
 };
 
@@ -110,7 +102,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     backgroundColor: colors.background,
-    paddingTop: 40,
+    // paddingTop: 40,
   },
   forgotContainer: {
     alignItems: 'flex-end',

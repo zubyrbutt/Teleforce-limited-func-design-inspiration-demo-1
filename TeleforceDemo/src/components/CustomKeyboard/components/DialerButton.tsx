@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   dialerButton: {
     alignItems: 'center',
     backgroundColor: colors.white,
-    borderColor: colors.gray,
+    borderColor: colors.border,
     borderRadius: 5,
     borderWidth: 1,
     flex: 1,
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   },
   dialerButtonLetters: {
     color: colors.placeholder,
-    fontSize: 12,
+    fontSize: fontSizes.caption,
     fontWeight: 'bold',
   },
   dialerButtonText: {
